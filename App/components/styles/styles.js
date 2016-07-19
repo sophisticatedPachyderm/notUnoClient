@@ -11,7 +11,8 @@ const card = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: width * 0.015,
     marginRight: width * 0.015,
-    marginBottom: 1
+    marginBottom: 1,
+    borderRadius: 5,
   },
   val: {
     textAlign: 'center',
@@ -65,7 +66,7 @@ const game = StyleSheet.create({
   hand: {
     flex: 1,
     width: width,
-    backgroundColor: '#555'
+    backgroundColor: '#fff'
   },
   label: {
     alignItems: 'center',
@@ -163,6 +164,34 @@ const popup = StyleSheet.create({
   }
 });
 
+const gameListItem = StyleSheet.create({
+  title: {
+    fontSize: 32,
+    alignItems: 'center',
+    margin: 12,
+    flex: 1
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  gameContainer: {
+    width: width * 0.66,
+    padding: 12,
+  },
+  gameId: {
+    textAlign:'left',
+    fontSize: 18
+  },
+  players: {
+    flexDirection:'row'
+  },
+  turn: {
+    flex: 1,
+    textAlign:'right'
+  }
+});
+
 module.exports = {
   card: card,
   create: create,
@@ -170,4 +199,5 @@ module.exports = {
   login: login,
   openGames: openGames,
   popup: popup,
+  gameListItem: gameListItem,
 }

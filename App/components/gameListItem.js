@@ -9,35 +9,8 @@ import {
   Dimensions
 } from 'react-native';
 
-const {height, width} = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 32,
-    alignItems: 'center',
-    margin: 12,
-    flex: 1
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  gameContainer: {
-    width: width * 0.66,
-    padding: 12,
-  },
-  gameId: {
-    textAlign:'left',
-    fontSize: 18
-  },
-  players: {
-    flexDirection:'row'
-  },
-  turn: {
-    flex: 1,
-    textAlign:'right'
-  }
-});
+// require from external style sheet
+const styles = require('./styles/styles').gameListItem;
 
 class gameListItem extends Component {
   constructor(props) {

@@ -21,7 +21,7 @@ class game extends Component {
     super(props);
     this.state = {
       currentCard: '',
-      color: '#555',
+      color: '#fff',
       value: '',
       condition: true
     }
@@ -36,6 +36,7 @@ class game extends Component {
     if (!this.state.condition) {
       this.setState({color: newColor, value: newValue});
       // I also want to remove the card here by splicing it out of the hand array
+      // this.props.cards.splice((newValue - 1), 1);
       this._broadcastChoice({color: newColor, value: newValue});
     }
   }
@@ -53,11 +54,11 @@ class game extends Component {
       optional =
       <PopUp style={styles.optional} title={'Play card or draw?'}
         actionA={() => {
-          console.log('a');
+          console.log('Draw a new card: game - line 57');
           this.setState({condition: false});
         }}
         actionB={() => {
-          console.log('b');
+          console.log('play a card from hand: game - line 61');
           this.setState({condition: false});
         }}
         textA={'Draw new card'}

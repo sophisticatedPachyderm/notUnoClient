@@ -29,7 +29,8 @@ class login extends Component {
       title: 'my games',
       rightButtonTitle: 'add',
       onRightButtonPress: () => {
-        console.log('add a new game')
+        console.log('Do this things here to add a new game!');
+        console.log('Login - line 32');
       },
       component: OpenGames,
       passProps: {cards: this.props.cards, openGames: this.props.openGames},
@@ -42,13 +43,13 @@ class login extends Component {
         <Text style={styles.title}> Sign into Your Account </Text>
         <Text style={styles.label}>username: </Text>
         <TextInput style={styles.input}
-          onTextChange={(text) => this.setState({username: text})}/>
+          onChangeText={() => console.log('get USERNAME here: login - 46')}/>
         <Text style={styles.label}>password: </Text>
         <TextInput style={styles.input}
-          onTextChange={(text) => this.setState({password: text})}/>
+          onChangeText={() => console.log('get PASSWORD here: login - 49')}/>
         <TouchableHighlight
           onPress={() => {
-            console.log('clicked!');
+            console.log('do the login action: login - 52');
             this.login();
           }}><Text style={styles.submitButton}> submit </Text></TouchableHighlight>
       </View>

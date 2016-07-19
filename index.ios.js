@@ -12,7 +12,16 @@ const Game = require('./App/components/game');
 const Create = require('./App/components/create');
 const OpenGames = require('./App/components/openGames');
 
+/*
+====================
+As of right now, the app is expecting data to come in through a few different ways. First is the player's current hand. That's represented by the 'card' variable below.
 
+Second is the players open games. Represented by the openGames variable below.
+
+Right now, I haven't written in a way to get the deck or the other players' card counts.
+
+====================
+*/
 const cards = [
   [1,'red'],
   [2,'green'],
