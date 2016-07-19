@@ -7,6 +7,7 @@ import {
   View
 } from 'react-native';
 
+
 const Login = require('./App/components/login');
 const Game = require('./App/components/game');
 const Create = require('./App/components/create');
@@ -22,6 +23,7 @@ Right now, I haven't written in a way to get the deck or the other players' card
 
 ====================
 */
+
 const cards = [
   [1,'red'],
   [2,'green'],
@@ -64,6 +66,8 @@ const styles = StyleSheet.create({
   },
 });
 
+const ws = require('./socketUtil');
+
 class notUno extends Component {
   constructor(props) {
     super(props);
@@ -79,7 +83,7 @@ class notUno extends Component {
         initialRoute={{
           title: 'Login',
           component: Login,
-          passProps: { cards: cards, openGames: openGames, test: 'testing'}
+          passProps: { cards: cards, openGames: openGames, ws: ws}
         }}
       />
     );
