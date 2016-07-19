@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 
 const OpenGames = require('./openGames');
+const Create = require('./create');
+
 
 // get style sheet from external
 const styles = require('./styles/styles').login;
@@ -27,15 +29,22 @@ class login extends Component {
     // move forward in the navigation path to the user's
     this.props.navigator.push({
       title: 'my games',
-      // add the option to create a game with the add button in the upper-right corner
       rightButtonTitle: 'add',
-      //
       onRightButtonPress: () => {
         console.log('game added');
         this.props.ws.sendData({message: 'Please add a game...'}, 'createGame');
       },
       component: OpenGames,
       passProps: {cards: this.props.cards, openGames: this.props.openGames},
+    });
+  }
+
+  // create a new account
+  create() {
+    this.props.navigator.push({
+      title: 'create user',
+      component: Create,
+      passProps: {ws: this.props.ws, accessGames: this.accessGames.bind(this)},
     });
   }
 
@@ -55,15 +64,29 @@ class login extends Component {
       <View style={styles.container}>
         <Text style={styles.title}> Sign into Your Account </Text>
         <Text style={styles.label}>username: </Text>
-        <TextInput autoCapitalize={'none'} style={styles.input}
-          onChangeText={(text) => this.setState({username: text})}/>
-        <Text style={styles.label}>password: </Text>
-        <TextInput autoCapitalize={'none'} style={styles.input}
-          onChangeText={(text) => this.setState({password: text})}/>
+        <TextInput autoCapitalize={'none'}
+          style={styles.input}
+          onChangeText={ (text) => {
+            this.setState( {username: text} )
+          }}/>
+        <Text style={styles.label}> password: </Text>
+        <TextInput autoCapitalize={'none'}
+          style={styles.input}
+          onChangeText={ (text) => {
+            this.setState( {password: text} )
+          }}/>
+        <TouchableHighlight
+          onPress={ () => {
+            this.login();
+          }}>
+          <Text style={styles.submitButton}> submit </Text>
+        </TouchableHighlight>
         <TouchableHighlight
           onPress={() => {
-            this.login();
-          }}><Text style={styles.submitButton}> submit </Text></TouchableHighlight>
+            this.create();
+          }}>
+          <Text style={styles.submitButton}> create account </Text>
+        </TouchableHighlight>
       </View>
     );
   }

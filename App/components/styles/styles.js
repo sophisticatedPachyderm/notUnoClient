@@ -107,7 +107,8 @@ const login = StyleSheet.create({
     backgroundColor: '#555',
     color:'#fff',
     fontSize: 24,
-    padding: 12
+    padding: 12,
+    margin: 12,
   }
 });
 
