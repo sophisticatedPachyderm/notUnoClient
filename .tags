@@ -1,0 +1,50 @@
+_prodInvariant	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^var _prodInvariant = require('.\/reactProdInvariant');$/;"	variable	line:14
+ReactRef	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^var ReactRef = require('.\/ReactRef');$/;"	variable	line:16
+ReactInstrumentation	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^var ReactInstrumentation = require('.\/ReactInstrumentation');$/;"	variable	line:17
+invariant	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^var invariant = require('fbjs\/lib\/invariant');$/;"	variable	line:19
+attachRefs	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^function attachRefs() {$/;"	function	line:25
+attachRefs	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^function attachRefs() {$/;"	function	line:25
+mountComponent	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^  mountComponent: function (internalInstance, transaction, hostParent, hostContainerInfo, context) {$/;"	function	line:42
+ReactReconciler.mountComponent	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^var ReactReconciler = {$/;"	method	line:29
+getHostNode	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^  getHostNode: function (internalInstance) {$/;"	function	line:66
+ReactReconciler.getHostNode	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^  },$/;"	method	line:60
+unmountComponent	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^  unmountComponent: function (internalInstance, safely) {$/;"	function	line:76
+ReactReconciler.unmountComponent	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^  },$/;"	method	line:68
+receiveComponent	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^  receiveComponent: function (internalInstance, nextElement, transaction, context) {$/;"	function	line:101
+ReactReconciler.receiveComponent	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^  },$/;"	method	line:90
+performUpdateIfNecessary	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^  performUpdateIfNecessary: function (internalInstance, transaction, updateBatchNumber) {$/;"	function	line:152
+ReactReconciler.performUpdateIfNecessary	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/node_modules/react/lib/ReactReconciler.js	/^  },$/;"	method	line:143
+render	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/card.js	/^  render() {$/;"	function	line:32
+class.blue	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/card.js	/^    const colorConverter = {$/;"	property	line:33
+class.green	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/card.js	/^      blue: '#2196F3',$/;"	property	line:34
+class.red	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/card.js	/^      green: '#4CAF50',$/;"	property	line:35
+class.yellow	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/card.js	/^      red: '#F44336',$/;"	property	line:36
+constructor	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/game.js	/^  constructor(props) {$/;"	function	line:47
+state.currentCard	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/game.js	/^    this.state = {$/;"	property	line:49
+state.color	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/game.js	/^      currentCard: '',$/;"	property	line:50
+state.value	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/game.js	/^      color: '#555',$/;"	property	line:51
+state.condition	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/game.js	/^      value: '',$/;"	property	line:52
+_broadcastChoice	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/game.js	/^  _broadcastChoice(choice) {$/;"	function	line:57
+_changeCard	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/game.js	/^  _changeCard(newColor, newValue) {$/;"	function	line:62
+render	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/game.js	/^  render() {$/;"	function	line:70
+constructor	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/login.js	/^  constructor(props) {$/;"	function	line:44
+state.test	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/login.js	/^    this.state = {$/;"	property	line:46
+state.username	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/login.js	/^      test: 0,$/;"	property	line:47
+state.password	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/login.js	/^      username: '',$/;"	property	line:48
+render	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/login.js	/^  render() {$/;"	function	line:53
+constructor	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/create.js	/^  constructor(props) {$/;"	function	line:42
+state.username	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/create.js	/^    this.state = {$/;"	property	line:44
+state.password	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/create.js	/^      username: '',$/;"	property	line:45
+state.confirm	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/create.js	/^      password: '',$/;"	property	line:46
+render	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/create.js	/^  render() {$/;"	function	line:51
+constructor	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/openGames.js	/^  constructor(props) {$/;"	function	line:31
+render	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/openGames.js	/^  render() {$/;"	function	line:35
+constructor	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^  constructor(props) {$/;"	function	line:44
+render	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^  render() {$/;"	function	line:48
+const.0	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^    const colors = {$/;"	property	line:52
+const.1	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      0: '#2196F3',$/;"	property	line:53
+const.2	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      1: '#4CAF50',$/;"	property	line:54
+const.3	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      2: '#F44336',$/;"	property	line:55
+constructor	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/index.ios.js	/^  constructor(props) {$/;"	function	line:65
+state.currentPage	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/index.ios.js	/^    this.state = {$/;"	property	line:67
+render	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/index.ios.js	/^  render() {$/;"	function	line:72
