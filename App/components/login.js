@@ -24,12 +24,15 @@ class login extends Component {
   }
 
   accessGames() {
+    // move forward in the navigation path to the user's
     this.props.navigator.push({
       title: 'my games',
+      // add the option to create a game with the add button in the upper-right corner
       rightButtonTitle: 'add',
+      //
       onRightButtonPress: () => {
-        console.log('Do this things here to add a new game!');
-        console.log('Login - line 32');
+        console.log('game added');
+        this.props.ws.sendData({message: 'Please add a game...'}, 'createGame');
       },
       component: OpenGames,
       passProps: {cards: this.props.cards, openGames: this.props.openGames},
