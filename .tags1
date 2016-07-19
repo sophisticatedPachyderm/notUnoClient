@@ -4,6 +4,9 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-constructor	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/index.ios.js	/^  constructor(props) {$/;"	function	line:65
-state.currentPage	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/index.ios.js	/^    this.state = {$/;"	property	line:67
-render	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/index.ios.js	/^  render() {$/;"	function	line:72
+constructor	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^  constructor(props) {$/;"	function	line:43
+render	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^  render() {$/;"	function	line:47
+const.0	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^    const colors = {$/;"	property	line:52
+const.1	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      0: '#2196F3',$/;"	property	line:53
+const.2	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      1: '#4CAF50',$/;"	property	line:54
+const.3	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      2: '#F44336',$/;"	property	line:55

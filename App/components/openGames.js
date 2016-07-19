@@ -8,39 +8,37 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-const GameListItem = require('./gameListItem')
+const GameListItem = require('./gameListItem');
+const Game = require('./game');
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 32,
-    alignItems: 'center',
-    flex: 0.15
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#fff',
-
-  },
-  gameList: {
-    flex: 1,
-  }
-});
+// get style sheet from external
+const styles = require('./styles/styles').openGames;
 
 class openGames extends Component {
   constructor(props) {
     super(props);
+    this.state ={
+      games: this.props.openGames
+    }
+    this.chooseGame = this.chooseGame.bind(this);
+  }
+
+  chooseGame(game) {
+    this.props.navigator.push({
+      title: 'game',
+      component: Game,
+      passProps: {cards: this.props.cards},
+    });
   }
 
   render() {
     let games = this.props.openGames.map((game, index) => {
-      return <GameListItem key={index} index={index} game={game} />
-
+      return <GameListItem key={index} index={index} game={game} chooseGame={this.chooseGame}/>
     });
 
     return (
       <View style={styles.container}>
-        <View style={{flex:0.15}} />
+        <View style={{flex:0.25}} />
         <Text style={styles.title}> Your Open Games </Text>
         <View style={styles.gameList}>
           {games}

@@ -8,37 +8,10 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 32,
-    alignItems: 'center',
-    margin: 12,
-    marginBottom: 24
-  },
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-  },
-  labels: {
-    paddingBottom: 12,
-  },
-  input: {
-    height:32,
-    fontSize: 22,
-    textAlign: 'center',
-    margin: 10,
-    color: '#333',
-    borderWidth: 1,
-    borderColor: '#333',
-  },
-  submitButton: {
-    backgroundColor: '#555',
-    color:'#fff',
-    fontSize: 24,
-    padding: 12
-  }
-});
+const OpenGames = require('./openGames');
+
+// get style sheet from external
+const styles = require('./styles/styles').login;
 
 class login extends Component {
   constructor(props) {
@@ -48,6 +21,19 @@ class login extends Component {
       username: '',
       password: ''
     }
+  }
+
+  login() {
+    //here would be where we run the check
+    this.props.navigator.push({
+      title: 'my games',
+      rightButtonTitle: 'add',
+      onRightButtonPress: () => {
+        console.log('add a new game')
+      },
+      component: OpenGames,
+      passProps: {cards: this.props.cards, openGames: this.props.openGames},
+    });
   }
 
   render() {
@@ -62,9 +48,8 @@ class login extends Component {
           onTextChange={(text) => this.setState({password: text})}/>
         <TouchableHighlight
           onPress={() => {
-            console.log('submit');
-            console.log(this.state.username);
-            console.log(this.state.password);
+            console.log('clicked!');
+            this.login();
           }}><Text style={styles.submitButton}> submit </Text></TouchableHighlight>
       </View>
     );

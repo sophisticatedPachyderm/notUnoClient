@@ -13,35 +13,8 @@ import {
 const Card = require('./card');
 const PopUp = require('./popup');
 
-const {height, width} = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-    width: width,
-  },
-  main: {
-    flex: 3,
-    width: width * 1,
-    justifyContent: 'center',
-  },
-  hand: {
-    flex: 1,
-    width: width,
-    backgroundColor: '#555'
-  },
-  label: {
-    alignItems: 'center',
-    textAlign: 'center',
-    fontSize: 72
-  },
-  optional: {
-    justifyContent: 'center',
-    margin: width * 0.1,
-  }
-});
+// get style sheet from external
+const styles = require('./styles/styles').game;
 
 class game extends Component {
   constructor(props) {

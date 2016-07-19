@@ -4,39 +4,11 @@ import {
   Text,
   View,
   TextInput,
-  StyleSheet,
   TouchableHighlight
 } from 'react-native';
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 32,
-    alignItems: 'center',
-    margin: 12,
-    marginBottom: 24
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  input: {
-    height:32,
-    fontSize: 22,
-    textAlign: 'center',
-    margin: 10,
-    color: '#333',
-    borderWidth: 1,
-    borderColor: '#333',
-  },
-  submitButton: {
-    backgroundColor: '#555',
-    color:'#fff',
-    fontSize: 24,
-    padding: 12
-  }
-});
+// get style sheet from external
+const styles = require('./styles/styles').create;
 
 class create extends Component {
   constructor(props) {

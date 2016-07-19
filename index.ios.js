@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -29,7 +23,7 @@ const cards = [
   [7,'green'],
 ];
 
-const opengames = [
+const openGames = [
   {
     players: ['Jean-luc', 'Beverly', 'Geordi', 'Data'],
     turn: 6,
@@ -65,16 +59,20 @@ class notUno extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: 'Login'
+      currentPage: 'Login',
     };
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.renderComponent(this.state.currentPage)}
-      </View>
-      <Game cards={cards} openGames={opengames}/>
+      <NavigatorIOS
+        style={{flex: 1}}
+        initialRoute={{
+          title: 'Login',
+          component: Login,
+          passProps: { cards: cards, openGames: openGames, test: 'testing'}
+        }}
+      />
     );
   }
 }

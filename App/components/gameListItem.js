@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     fontSize: 32,
     alignItems: 'center',
     margin: 12,
-    marginBottom: 24,
     flex: 1
   },
   container: {
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
   },
   gameContainer: {
     width: width * 0.66,
-    padding: 12
+    padding: 12,
   },
   gameId: {
     textAlign:'left',
@@ -43,11 +42,12 @@ const styles = StyleSheet.create({
 class gameListItem extends Component {
   constructor(props) {
     super(props);
-
   }
+
   render() {
     const game = this.props.game;
     const index = this.props.index;
+    const chooseGame = this.props.chooseGame;
 
     const colors = {
       0: '#2196F3',
@@ -60,14 +60,16 @@ class gameListItem extends Component {
       return <Text key={index} style={{padding:6}}>{person}</Text>
     });
     return (
-      <View style={styles.container}>
-        <View style={{flex:0.05}} />
-        <View style={[styles.gameContainer, {backgroundColor: colors[index % 4]}]}>
-          <Text style={styles.gameId}>game ID: {game.gameId}</Text>
-          <View style={styles.players}>{players}</View>
-          <Text style={styles.turn}>turn: {game.turn}</Text>
+      <TouchableHighlight style={styles.container} onPress={() => {chooseGame()}}>
+        <View>
+          <View style={{flex:0.05}} />
+          <View style={[styles.gameContainer, {backgroundColor: colors[index % 4]}]}>
+            <Text style={styles.gameId}>game ID: {game.gameId}</Text>
+            <View style={styles.players}>{players}</View>
+            <Text style={styles.turn}>turn: {game.turn}</Text>
+          </View>
         </View>
-      </View>
+      </TouchableHighlight>
     )
   }
 };
