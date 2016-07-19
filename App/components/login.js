@@ -23,8 +23,7 @@ class login extends Component {
     }
   }
 
-  login() {
-    //here would be where we run the check
+  accessGames() {
     this.props.navigator.push({
       title: 'my games',
       rightButtonTitle: 'add',
@@ -37,19 +36,29 @@ class login extends Component {
     });
   }
 
+  login() {
+    //here would be where we run the check
+    if (this.state.username &&this.state.password) {
+      this.props.ws.sendData({username: this.state.username, password: this.state.password});
+      this.setState({password: ''});
+      this.accessGames();
+    } else {
+      console.log('error, no username or password');
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}> Sign into Your Account </Text>
         <Text style={styles.label}>username: </Text>
-        <TextInput style={styles.input}
-          onChangeText={() => console.log('get USERNAME here: login - 46')}/>
+        <TextInput autoCapitalize={'none'} style={styles.input}
+          onChangeText={(text) => this.setState({username: text})}/>
         <Text style={styles.label}>password: </Text>
-        <TextInput style={styles.input}
-          onChangeText={() => console.log('get PASSWORD here: login - 49')}/>
+        <TextInput autoCapitalize={'none'} style={styles.input}
+          onChangeText={(text) => this.setState({password: text})}/>
         <TouchableHighlight
           onPress={() => {
-            console.log('do the login action: login - 52');
             this.login();
           }}><Text style={styles.submitButton}> submit </Text></TouchableHighlight>
       </View>
