@@ -21,12 +21,13 @@ class login extends Component {
     this.state = {
       test: 0,
       username: '',
-      password: ''
+      password: '',
+      error: '',
     }
   }
 
   accessGames() {
-    // move forward in the navigation path to the user's
+    // move forward in the navigation path to the user's games
     this.props.navigator.push({
       title: 'my games',
       rightButtonTitle: 'add',
@@ -39,7 +40,7 @@ class login extends Component {
     });
   }
 
-  // create a new account
+  // move user to the create page
   create() {
     this.props.navigator.push({
       title: 'create user',
@@ -48,14 +49,13 @@ class login extends Component {
     });
   }
 
+  // send the user's log in info to the server via websocket
   login() {
-    //here would be where we run the check
     if (this.state.username &&this.state.password) {
-      this.props.ws.sendData({username: this.state.username, password: this.state.password});
-      this.setState({password: ''});
+      this.props.ws.sendData({username: this.state.username, password: this.state.password}, 'login');
       this.accessGames();
     } else {
-      console.log('error, no username or password');
+      this.setState({error: 'You have not entered a username and/or password'});
     }
   }
 
@@ -66,16 +66,20 @@ class login extends Component {
         <Text style={styles.label}>username: </Text>
         <TextInput autoCapitalize={'none'}
           style={styles.input}
+          returnKeyLabel={'next'}
           onChangeText={ (text) => {
             this.setState( {username: text} )
           }}/>
         <Text style={styles.label}> password: </Text>
         <TextInput autoCapitalize={'none'}
           style={styles.input}
+          returnKeyLabel={'next'}
+          secureTextEntry={true}
           onChangeText={ (text) => {
             this.setState( {password: text} )
           }}/>
         <TouchableHighlight
+          returnKeyLabel={'submit'}
           onPress={ () => {
             this.login();
           }}>
@@ -87,6 +91,7 @@ class login extends Component {
           }}>
           <Text style={styles.submitButton}> create account </Text>
         </TouchableHighlight>
+        <Text style={styles.alert}> {this.state.error} </Text>
       </View>
     );
   }

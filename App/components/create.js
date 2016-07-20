@@ -4,7 +4,8 @@ import {
   Text,
   View,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
+
 } from 'react-native';
 
 // get style sheet from external
@@ -21,12 +22,14 @@ class create extends Component {
     }
   }
 
+  // does simple validation and sends the new user's info to the server
   createUser() {
     if (this.state.password === this.state.confirm && this.state.username && this.state.password) {
       console.log('sending new user request');
-      this.props.ws.sendData({message: 'hi duke, will you create a user for me.'});
+      this.props.ws.sendData({username: this.state.username, password: this.state.password});
       this.props.accessGames();
     } else {
+      // show error for a couple seconds
       this.setState({error: 'Your username and password do not match'});
       setTimeout(() => {
         this.setState({error: ''});
@@ -47,12 +50,14 @@ class create extends Component {
         <Text style={styles.label}> password: </Text>
         <TextInput style={styles.input}
           autoCapitalize={'none'}
+          secureTextEntry={true}
           onChangeText={(text) => {
             this.setState({password: text})
           }}/>
         <Text style={styles.label}> confirm password: </Text>
         <TextInput style={styles.input}
           autoCapitalize={'none'}
+          secureTextEntry={true}
           onChangeText={(text) => {
             this.setState({confirm: text});
           }}/>
