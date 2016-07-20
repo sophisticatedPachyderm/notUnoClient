@@ -10,6 +10,7 @@ import {
 
 // get style sheet from external
 const styles = require('./styles/styles').create;
+const UserCreateForm = require('./userCreateForm');
 
 class create extends Component {
   constructor(props) {
@@ -20,53 +21,40 @@ class create extends Component {
       confirm: '',
       error: '',
     }
+    this.createUser = this.createUser.bind(this);
+    this.parentSetState = this.parentSetState.bind(this);
   }
 
   // does simple validation and sends the new user's info to the server
   createUser() {
-    if (this.state.password === this.state.confirm && this.state.username && this.state.password) {
-      console.log('sending new user request');
-      this.props.ws.sendData({username: this.state.username, password: this.state.password});
-      this.props.accessGames();
-    } else {
-      // show error for a couple seconds
-      this.setState({error: 'Your username and password do not match'});
-      setTimeout(() => {
-        this.setState({error: ''});
-      }, 5000);
-    }
+    // send username and password through the socket
+    this.props.ws.send(JSON.stringify({
+      username: this.state.username,
+      password: this.state.password,
+      route: 'signup',
+    }));
+    // receive the response on the 'signup' route
+
+    // if username is untaken, create user and progress to fresh games screen
+
+    // else respond with error
+  }
+
+  parentSetState(key, value) {
+    let that = this;
+    let obj = {};
+    obj[key] = value;
+    that.setState(obj);
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}> Create a new Account </Text>
-        <Text style={styles.label}> username: </Text>
-        <TextInput style={styles.input}
-          autoCapitalize={'none'}
-          onChangeText={ (text) => {
-            this.setState({username: text});
-          }}/>
-        <Text style={styles.label}> password: </Text>
-        <TextInput style={styles.input}
-          autoCapitalize={'none'}
-          secureTextEntry={true}
-          onChangeText={(text) => {
-            this.setState({password: text})
-          }}/>
-        <Text style={styles.label}> confirm password: </Text>
-        <TextInput style={styles.input}
-          autoCapitalize={'none'}
-          secureTextEntry={true}
-          onChangeText={(text) => {
-            this.setState({confirm: text});
-          }}/>
-        <TouchableHighlight
-          onPress={() => {
-            this.createUser();
-          }}>
-          <Text style={styles.submitButton}> submit </Text>
-        </TouchableHighlight>
+        <UserCreateForm
+          login={() => this.createUser()}
+          parentSetState={this.parentSetState}
+        />
         <Text style={styles.alert}> {this.state.error} </Text>
       </View>
     );

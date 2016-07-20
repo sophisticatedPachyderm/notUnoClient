@@ -1,4 +1,6 @@
 const ws = new WebSocket('wss://notuno.herokuapp.com/');
+const gameState = require('./App/gameState');
+
 
 ws.onopen = (e) => {
   // connection opened
@@ -8,9 +10,8 @@ ws.onopen = (e) => {
 
 ws.onmessage = (e) => {
   // a message was received
-  console.log('evan gets message');
   let message = JSON.parse(e.data);
-  console.log(message);
+  console.log(message)
 };
 
 ws.onerror = (e) => {
@@ -23,15 +24,5 @@ ws.onclose = (e) => {
   console.log('evan says closed');
   console.log(e.code, e.reason);
 };
-
-ws.sendData = (data, route) => {
-  let message = {
-    route: route || 'getGame',
-    gameId: 21,
-    data: data,
-  }
-  message = JSON.stringify(message);
-  ws.send(message);
-}
 
 module.exports = ws;

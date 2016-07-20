@@ -10,7 +10,8 @@ import {
 
 const OpenGames = require('./openGames');
 const Create = require('./create');
-
+const FullLogin = require('./fullInputField');
+const Button = require('./button');
 
 // get style sheet from external
 const styles = require('./styles/styles').login;
@@ -19,11 +20,11 @@ class login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      test: 0,
       username: '',
       password: '',
-      error: '',
     }
+    this.create = this.create.bind(this);
+    this.login = this.login.bind(this);
   }
 
   accessGames() {
@@ -51,47 +52,42 @@ class login extends Component {
 
   // send the user's log in info to the server via websocket
   login() {
-    if (this.state.username &&this.state.password) {
-      this.props.ws.sendData({username: this.state.username, password: this.state.password}, 'login');
-      this.accessGames();
-    } else {
-      this.setState({error: 'You have not entered a username and/or password'});
-    }
+    // send username and password through the socket
+    this.props.ws.send(JSON.stringify({
+      username: this.state.username,
+      password: this.state.password,
+      route: 'signin',
+    }));
+    // receive the response on the 'signin' route
+
+    // if the response if affirmative, allow passage to a user's games
+      // call accessGames
+    // else respond with error
+      // NONE SHALL PASS
+  }
+
+  parentSetState(key, value) {
+    let that = this;
+    let obj = {};
+    obj[key] = value;
+    that.setState(obj);
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}> Sign into Your Account </Text>
-        <Text style={styles.label}>username: </Text>
-        <TextInput autoCapitalize={'none'}
-          style={styles.input}
-          returnKeyLabel={'next'}
-          onChangeText={ (text) => {
-            this.setState( {username: text} )
-          }}/>
-        <Text style={styles.label}> password: </Text>
-        <TextInput autoCapitalize={'none'}
-          style={styles.input}
-          returnKeyLabel={'next'}
-          secureTextEntry={true}
-          onChangeText={ (text) => {
-            this.setState( {password: text} )
-          }}/>
-        <TouchableHighlight
-          returnKeyLabel={'submit'}
-          onPress={ () => {
-            this.login();
-          }}>
-          <Text style={styles.submitButton}> submit </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={() => {
-            this.create();
-          }}>
-          <Text style={styles.submitButton}> create account </Text>
-        </TouchableHighlight>
-        <Text style={styles.alert}> {this.state.error} </Text>
+        <FullLogin title={'username: '}
+          callback={ (text) => {
+            this.parentSetState('username', text);
+          }} />
+        <FullLogin title={'password: '}
+          callback={ (text) => {
+            this.parentSetState('password', text);
+          }}
+          pw={true}/>
+        <Button caption={'submit'} callback={() => this.login()} />
+        <Button caption={'create'} callback={this.create} />
       </View>
     );
   }
