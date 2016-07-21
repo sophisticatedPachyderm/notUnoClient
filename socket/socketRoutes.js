@@ -21,6 +21,11 @@ const clientWsRoutes = {
 
   signUpResponse: (response) => {
     console.log(response);
+  },
+
+  getGameResponse: (response) => {
+    console.log('from get game');
+    console.log(response);
   }
 };
 

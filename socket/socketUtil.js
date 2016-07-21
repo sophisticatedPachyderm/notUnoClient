@@ -14,7 +14,7 @@ ws.onmessage = (e) => {
   // anything is received
   let message = JSON.parse(e.data);
   console.log(message);
-  console.log(message.route);
+  console.log('@ route: ', message.route);
 
   // =============
   // Use this once return routes are set up

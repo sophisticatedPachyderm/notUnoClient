@@ -49,7 +49,7 @@ class login extends Component {
 
     // then this will make the call to get the users games
     this.props.ws.send(JSON.stringify({
-      route: 'allGames',
+      route: 'getGame',
       gameId: 21,
     }));
   }
@@ -82,11 +82,13 @@ class login extends Component {
     }));
     // receive the response on the 'signin' route
     // if the response if affirmative, allow passage to a user's games
-
+    if (appState.authorized) {
       // call accessGames
       this.accessGames();
     // else respond with error
-      // NONE SHALL PASS
+    } else {
+      console.log('NONE SHALL PASS');
+    }
   }
 
   parentSetState(key, value) {
