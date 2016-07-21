@@ -17,6 +17,11 @@ const ws = require('./socket/socketUtil');
 const sampleData = require('./sampleData');
 const appState = require('./App/appState');
 const gameState = require('./App/gameState');
+
+const _saveToState = (state, property, data) => {
+  state[property] = data;
+  // to not confuse with React's `props`, Steven renamed this var
+};
 /*
 ====================
 As of right now, the app is expecting data to come in through a few different ways. First is the player's current hand. That's represented by the 'card' variable below.
@@ -57,6 +62,11 @@ class notUno extends Component {
         initialRoute={{
           title: 'Login',
           component: Login,
+          rightButtonTitle: 'Logout',
+          onRightButtonPress: () => {
+            console.log('logging out');
+            _saveToState(appState, 'authorized', false);
+          },
           passProps: {
             cards: sampleData.cards,
             openGames: sampleData.openGames,
