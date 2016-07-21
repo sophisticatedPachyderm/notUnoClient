@@ -26,6 +26,11 @@ const clientWsRoutes = {
   getGameResponse: (response) => {
     console.log('from get game');
     console.log(response);
+  },
+
+  getAllResponse: (response) => {
+    console.log('get all games for user');
+    console.log(response);
   }
 };
 
