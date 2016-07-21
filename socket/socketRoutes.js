@@ -13,6 +13,7 @@ const clientWsRoutes = {
   signInResponse: (response) => {
     if (response.response === 'affirmative') {
       _saveToState(appState, 'username', response.username);
+      _saveToState(appState, 'authorized', true);
     } else {
       console.log('sign-in failure because of credentials');
     }
