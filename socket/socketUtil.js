@@ -19,16 +19,16 @@ ws.onmessage = (e) => {
   // =============
   // Use this once return routes are set up
   // =============
-  // let route = message.route;
-  // if (socketRoutes[route]) {
-  //   socketRoutes[route](message);
-  // } else {
-  //   console.log('You send this to: ', route,'.');
-  //   console.log('invalid route. Did you mean one of these? ');
-  //   for (let route in socketRoutes) {
-  //     console.log('\t' + route);
-  //   }
-  // }
+  let route = message.route;
+  if (socketRoutes[route]) {
+    socketRoutes[route](message);
+  } else {
+    console.log('You sent this to: ', route,'.');
+    console.log('invalid route. Did you mean one of these? ');
+    for (let route in socketRoutes) {
+      console.log('\t' + route);
+    }
+  }
 };
 
 ws.onerror = (e) => {
