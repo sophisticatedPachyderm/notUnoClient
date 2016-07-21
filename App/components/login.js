@@ -25,7 +25,7 @@ class login extends Component {
       username: '',
       password: '',
       error: '',
-      authorized: this.props.appState.authorized,
+      authorized: false,
     }
     this.create = this.create.bind(this);
     this.login = this.login.bind(this);
