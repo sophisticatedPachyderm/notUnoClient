@@ -30,7 +30,7 @@ class gameListItem extends Component {
     }
 
     let players = game.players.map((person, index) => {
-      return <Text key={index} style={{padding:6}}>{person}</Text>
+      return <Text key={index} style={{padding:6}}>{person.username}</Text>
     });
     return (
       <TouchableHighlight style={styles.container} onPress={() => {chooseGame()}}>
@@ -39,7 +39,7 @@ class gameListItem extends Component {
           <View style={[styles.gameContainer, {backgroundColor: colors[index % 4]}]}>
             <Text style={styles.gameId}>game ID: {game.gameId}</Text>
             <View style={styles.players}>{players}</View>
-            <Text style={styles.turn}>turn: {game.turn}</Text>
+            <Text style={styles.turn}>turn: {game.currentPlayer}</Text>
           </View>
         </View>
       </TouchableHighlight>
