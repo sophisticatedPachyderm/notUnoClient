@@ -1,16 +1,22 @@
 const appState = require('../App/appState');
 const gameState = require('../App/gameState');
 
-const _saveToState = (state, prop, data) => {
-  state[prop] = data;
-}
+const _saveToState = (state, property, data) => {
+  state[property] = data;
+  // to not confuse with React's `props`, Steven renamed this var
+};
 
 const clientWsRoutes = {
   //--------------- USER RESPONSES --------------------//
 
   // response coming back after trying to log in
   signInResponse: (response) => {
-    console.log(response);
+    if (response.response === 'affirmative') {
+      _saveToState(appState, 'username', response.username);
+      _saveToState(appState, 'authorized', true);
+    } else {
+      console.log('sign-in failure because of credentials');
+    }
   },
 
   signUpResponse: (response) => {
