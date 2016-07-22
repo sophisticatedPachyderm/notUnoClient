@@ -23,13 +23,8 @@ class game extends Component {
       currentCard: '',
       color: '#fff',
       value: '',
-      condition: true
+      condition: true,
     }
-  }
-
-  _broadcastChoice(choice) {
-    // here is where the socket request will go
-    console.log('shout to the world!: ',choice);
   }
 
   _changeCard(newColor, newValue) {
@@ -41,29 +36,14 @@ class game extends Component {
     }
   }
 
-  render() {
-    const cards = this.props.cards;
+  _broadcastChoice(choice) {
+    console.log('shout to the world!: ', choice);
+  }
 
-    let items = cards.map((card, index) => {
+  render() {
+    let items = this.props.hand.map((card, index) => {
       return <Card key={index} color={card[1]} value={card[0]} changeCard={this._changeCard.bind(this)}/>;
     });
-
-    let optional;
-
-    if (this.state.condition) {
-      optional =
-      <PopUp style={styles.optional} title={'Play card or draw?'}
-        actionA={() => {
-          console.log('Draw a new card: game - line 57');
-          this.setState({condition: false});
-        }}
-        actionB={() => {
-          console.log('play a card from hand: game - line 61');
-          this.setState({condition: false});
-        }}
-        textA={'Draw new card'}
-        textB={'Play card from hand'} />
-    }
 
     return (
       <View style={styles.container}>
@@ -73,13 +53,13 @@ class game extends Component {
             {this.state.value}
           </Text>
         </View>
-        {optional}
         <ScrollView style={styles.hand} horizontal={true}>
           {items}
         </ScrollView>
       </View>
     );
   }
+
 };
 
 module.exports = game;

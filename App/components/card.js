@@ -14,10 +14,10 @@ const styles = require('./styles/styles').card;
 class card extends Component {
   render() {
     const colorConverter = {
-      blue: '#2196F3',
-      green: '#4CAF50',
-      red: '#F44336',
-      yellow: '#FFEB3B',
+      b: '#2196F3',
+      g: '#4CAF50',
+      r: '#F44336',
+      y: '#FFEB3B',
     }
     const color = colorConverter[this.props.color];
     const value = this.props.value;

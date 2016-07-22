@@ -29,12 +29,11 @@ class gameListItem extends Component {
       3: '#FFEB3B',
     }
 
-    console.log(' line 32 ', game);
     let players = game.players.map((person, index) => {
       return <Text key={index} style={{padding:6}}>{person}</Text>
     });
     return (
-      <TouchableHighlight style={styles.container} onPress={() => {chooseGame()}}>
+      <TouchableHighlight style={styles.container} onPress={() => {chooseGame(game.gameId)}}>
         <View>
           <View style={{flex:0.05}} />
           <View style={[styles.gameContainer, {backgroundColor: colors[index % 4]}]}>

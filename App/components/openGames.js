@@ -19,29 +19,78 @@ class openGames extends Component {
     this.state ={
       games: this.props.openGames
     }
-    this.chooseGame = this.chooseGame.bind(this);
   }
 
-  chooseGame(game) {
-    this.props.navigator.push({
-      title: 'game',
-      component: Game,
+  chooseGame(gameId) {
+    fetch('https://notuno.herokuapp.com/api/game/getgame', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        gameId: gameId
+      })
+    })
+    .then((response) => response.json())
+    .then((parsedResponse) => {
+      const userId = this.props.parentState.appUserId;
+      const players = parsedResponse.players;
+
+      console.log(parsedResponse)
+
+      let assignedPlayers = {
+        currentPlayer: null,
+        topPlayer: null,
+        rightPlayer: null,
+        leftPlayer: null,
+      };
+
+      for (let i=0; i < players.length; i++) {
+        let player = players[i];
+        console.log(player);
+        if (player.userId === userId) {
+          assignedPlayers.currentPlayer = player;
+        } else if (assignedPlayers.topPlayer === null) {
+          assignedPlayers.topPlayer = player;
+        } else if (assignedPlayers.leftPlayer === null) {
+          assignedPlayers.leftPlayer = player;
+        } else if (assignedPlayers.rightPlayer == null) {
+          assignedPlayers.rightPlayer = player;
+        }
+      }
+
+      let cards = JSON.parse(assignedPlayers.currentPlayer.hand);
+      console.log(cards);
+
+      this.props.navigator.push({
+        title: 'game',
+        component: Game,
+        passProps: {
+          game: parsedResponse,
+          userId: this.props.parentState.appUserId,
+          players: assignedPlayers,
+          hand: cards,
+        }
+      })
+    })
+    .catch((err) => {
+      console.log(err);
     });
   }
 
   render() {
     const openGames = this.props.parentState.appUserGames;
-    console.log(openGames);
     let games;
     if (openGames.length === 0) {
-      console.log('its nothing')
+      console.log('empty set of games');
     } else {
       games = openGames.map((game, index) => {
         return <GameListItem
           key={index}
           index={index}
           game={game}
-          chooseGame={this.chooseGame}/>
+          chooseGame={this.chooseGame.bind(this)}/>
       });
     }
     return (
