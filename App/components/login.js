@@ -50,7 +50,14 @@ class login extends Component {
     .then((parsedResponse) => {
       console.log(parsedResponse);
       // set the appState in here
-      this.accessGames();
+    })
+    .then(() => {
+      // check if we're allowed to move forward
+      if (this.state.appAuthorized) {
+        // send a request to the server to get that user's games by Id
+        // another fetch request...
+        // THEN
+      }
     })
     .catch((err) => {
       console.log(err);
