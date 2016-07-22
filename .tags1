@@ -4,9 +4,13 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-constructor	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^  constructor(props) {$/;"	function	line:43
-render	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^  render() {$/;"	function	line:47
-const.0	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^    const colors = {$/;"	property	line:52
-const.1	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      0: '#2196F3',$/;"	property	line:53
-const.2	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      1: '#4CAF50',$/;"	property	line:54
-const.3	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      2: '#F44336',$/;"	property	line:55
+constructor	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  constructor(props) {$/;"	function	line:22
+state.username	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^    this.state = {$/;"	property	line:24
+state.password	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^      username: '',$/;"	property	line:25
+state.error	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^      password: '',$/;"	property	line:26
+state.authorized	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^      error: '',$/;"	property	line:27
+accessGames	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  accessGames() {$/;"	function	line:40
+create	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  create() {$/;"	function	line:70
+login	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  login() {$/;"	function	line:79
+parentSetState	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  parentSetState(key, value) {$/;"	function	line:109
+render	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  render() {$/;"	function	line:116

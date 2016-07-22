@@ -17,6 +17,7 @@ const gameState = require('../gameState');
 
 // get style sheet from external
 const styles = require('./styles/styles').login;
+const alertStyles = require('./styles/styles').create;
 
 class login extends Component {
   constructor(props) {
@@ -25,10 +26,17 @@ class login extends Component {
       username: '',
       password: '',
       error: '',
-      authorized: false,
     }
-    this.create = this.create.bind(this);
-    this.login = this.login.bind(this);
+
+    // this.create = this.create.bind(this);
+    // this.login = this.login.bind(this);
+
+    this.showError = (errorMessage) => {
+      this.setState({error: errorMessage});
+      setTimeout(() => {
+        this.setState({error: ''});
+      }, 5000);
+    }
   }
 
   accessGames() {
@@ -38,19 +46,25 @@ class login extends Component {
       rightButtonTitle: 'add',
       onRightButtonPress: () => {
         console.log('game added');
-        this.props.ws.sendData({message: 'Duke, please add a game...'}, 'createGame');
+        this.props.ws.send(JSON.stringify({
+          message: null,
+          route: 'createGame',
+        }));
       },
       component: OpenGames,
-      passProps: {cards: this.props.cards, openGames: this.props.openGames},
       // passProps: {
-      //   openGames: appState.openGames
+      //   cards: this.props.cards,
+      //   openGames: this.props.openGames
       // },
+      passProps: {
+        openGames: appState.openGames,
+      },
     });
 
     // then this will make the call to get the users games
     this.props.ws.send(JSON.stringify({
-      route: 'getGame',
-      gameId: 21,
+      route: 'allGames',
+      userId: appState.userId,
     }));
   }
 
@@ -67,11 +81,7 @@ class login extends Component {
   login() {
     // simple check for empty strings in the username/password
     if (!this.state.username || !this.state.password) {
-      this.setState({error: 'invalid username or password!'});
-      console.log('invalid username or password');
-      setTimeout(() => {
-        this.setState({error: ''});
-      }, 5000);
+      this.showError('username and/or password are not strings');
       return;
     }
     // send username and password through the socket
@@ -80,25 +90,24 @@ class login extends Component {
       password: this.state.password,
       route: 'signin',
     }));
-    // receive the response on the 'signin' route
-    // if the response if affirmative, allow passage to a user's games
-    if (appState.authorized) {
-      // call accessGames
-      this.accessGames();
-    // else respond with error
-    } else {
-      console.log('NONE SHALL PASS');
-    }
+    // THIS IS STUPID AND WE SHOULD FIX IT LATER, but it works
+    setTimeout(() => {
+      if (appState.authorized) {
+        this.accessGames();
+      } else {
+        this.showError('sign-in failure because of credentials');
+      }
+    }, 1500);
   }
 
   parentSetState(key, value) {
-    let that = this;
     let obj = {};
     obj[key] = value;
-    that.setState(obj);
+    this.setState(obj);
   }
 
   render() {
+    console.log('appState:', appState);
     return (
       <View style={styles.container}>
         <Text style={styles.title}> Sign into Your Account </Text>
@@ -111,9 +120,9 @@ class login extends Component {
             this.parentSetState('password', text);
           }}
           pw={true}/>
-        <Button caption={'submit'} callback={() => this.login()} />
-        <Button caption={'create'} callback={this.create} />
-        <Text > { this.state.error } </Text>
+        <Button caption={'submit'} callback={this.login.bind(this)} />
+        <Button caption={'create'} callback={this.create.bind(this)} />
+        <Text style={alertStyles.alert}> { this.state.error } </Text>
       </View>
     );
   }

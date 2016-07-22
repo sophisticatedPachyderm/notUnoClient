@@ -132,7 +132,6 @@ const openGames = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#fff',
-
   },
   gameList: {
     flex: 1,
@@ -188,6 +187,7 @@ const gameListItem = StyleSheet.create({
   },
   gameContainer: {
     width: width * 0.66,
+    flex: 1,
     padding: 12,
   },
   gameId: {

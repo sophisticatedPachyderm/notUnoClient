@@ -32,7 +32,6 @@ class openGames extends Component {
   }
 
   render() {
-    let games;
     if (this.props.length !== 0) {
       games = this.props.openGames.map((game, index) => {
         return <GameListItem key={index} index={index} game={game} chooseGame={this.chooseGame}/>
@@ -43,7 +42,7 @@ class openGames extends Component {
         <View style={{flex:0.25}} />
         <Text style={styles.title}> Your Open Games </Text>
         <View style={styles.gameList}>
-          {games || <Text>You have no open games! Add one above</Text>}
+          {games}
         </View>
         <View style={{flex: 0.5}}></View>
       </View>

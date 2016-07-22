@@ -29,15 +29,16 @@ class gameListItem extends Component {
       3: '#FFEB3B',
     }
 
+    console.log(' line 32 ', game);
     let players = game.players.map((person, index) => {
-      return <Text key={index} style={{padding:6}}>{person.username}</Text>
+      return <Text key={index} style={{padding:6}}>{person}</Text>
     });
     return (
       <TouchableHighlight style={styles.container} onPress={() => {chooseGame()}}>
         <View>
           <View style={{flex:0.05}} />
           <View style={[styles.gameContainer, {backgroundColor: colors[index % 4]}]}>
-            <Text style={styles.gameId}>game ID: {game.gameId}</Text>
+            <Text style={styles.gameId}>game ID: {game.gameId || 'n/a'}</Text>
             <View style={styles.players}>{players}</View>
             <Text style={styles.turn}>turn: {game.currentPlayer}</Text>
           </View>
