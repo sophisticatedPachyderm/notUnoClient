@@ -12,7 +12,6 @@ const Login = require('./App/components/login');
 const Game = require('./App/components/game');
 const Create = require('./App/components/create');
 const OpenGames = require('./App/components/openGames');
-const ws = require('./socket/socketUtil');
 
 const sampleData = require('./sampleData');
 const appState = require('./App/appState');
@@ -54,13 +53,7 @@ class notUno extends Component {
           rightButtonTitle: 'logout',
           onRightButtonPress: () => {
             console.log('logging out');
-            _saveToState(appState, 'authorized', false);
-            _saveToState(appState, 'username', '');
-            _saveToState(appState, 'openGames', []);
           },
-          passProps: {
-            ws: ws,
-          }
         }}
       />
     );

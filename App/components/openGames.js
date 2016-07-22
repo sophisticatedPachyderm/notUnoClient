@@ -16,7 +16,7 @@ const styles = require('./styles/styles').openGames;
 class openGames extends Component {
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       games: this.props.openGames,
       error: ''
     }
@@ -68,6 +68,8 @@ class openGames extends Component {
       }
 
       let cards = JSON.parse(assignedPlayers.currentPlayer.hand);
+
+      console.log('is the userId/gameId here?', this.props.parentState);
 
       this.props.navigator.push({
         title: 'game',

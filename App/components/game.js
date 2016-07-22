@@ -12,6 +12,7 @@ import {
 
 const Card = require('./card');
 const PopUp = require('./popup');
+const ws = require('../../socket/socketUtil');
 
 // get style sheet from external
 const styles = require('./styles/styles').game;
@@ -52,7 +53,11 @@ class game extends Component {
       optional =
       <PopUp style={styles.optional} title={'Play card or draw?'}
         actionA={() => {
-          console.log('Draw a new card: game - line 57');
+          ws.send({
+            route: 'drawCard',
+            userId: ,
+            gameId: ,
+          })
           this.setState({condition: false});
         }}
         actionB={() => {
