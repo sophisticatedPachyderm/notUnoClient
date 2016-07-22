@@ -189,6 +189,13 @@ const gameListItem = StyleSheet.create({
     width: width * 0.66,
     flex: 1,
     padding: 12,
+    shadowColor: '#111',
+    shadowOffset: {
+      height: 3,
+      width: 3
+    },
+    shadowOpacity: 0.7,
+    shadowRadius: 2,
   },
   gameId: {
     textAlign:'left',

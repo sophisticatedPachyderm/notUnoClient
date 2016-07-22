@@ -17,7 +17,8 @@ class openGames extends Component {
   constructor(props) {
     super(props);
     this.state ={
-      games: this.props.openGames
+      games: this.props.openGames,
+      error: ''
     }
   }
 
@@ -34,10 +35,17 @@ class openGames extends Component {
     })
     .then((response) => response.json())
     .then((parsedResponse) => {
+      if (parsedResponse.gameComplete === 0) {
+        this.setState({error: 'This game hasn\'t started yet.'});
+        setTimeout(() => this.setState({error: ''}), 5000);
+        return;
+      } else if (parsedResponse.gameComplete === 2) {
+        this.setState({error: 'This game is over. Didn\'t anyone tell you?'});
+        setTimeout(() => this.setState({error: ''}), 5000);
+        return;
+      }
       const userId = this.props.parentState.appUserId;
       const players = parsedResponse.players;
-
-      console.log(parsedResponse)
 
       let assignedPlayers = {
         currentPlayer: null,
@@ -48,7 +56,6 @@ class openGames extends Component {
 
       for (let i=0; i < players.length; i++) {
         let player = players[i];
-        console.log(player);
         if (player.userId === userId) {
           assignedPlayers.currentPlayer = player;
         } else if (assignedPlayers.topPlayer === null) {
@@ -61,7 +68,6 @@ class openGames extends Component {
       }
 
       let cards = JSON.parse(assignedPlayers.currentPlayer.hand);
-      console.log(cards);
 
       this.props.navigator.push({
         title: 'game',
@@ -100,6 +106,7 @@ class openGames extends Component {
         <View style={styles.gameList}>
           {games}
         </View>
+        <Text> {this.state.error} </Text>
         <View style={{flex: 0.5}}></View>
       </View>
     )

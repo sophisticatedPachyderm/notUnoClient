@@ -30,20 +30,38 @@ class game extends Component {
   _changeCard(newColor, newValue) {
     if (!this.state.condition) {
       this.setState({color: newColor, value: newValue});
-      // I also want to remove the card here by splicing it out of the hand array
-      // this.props.cards.splice((newValue - 1), 1);
-      this._broadcastChoice({color: newColor, value: newValue});
+      console.log('send through websocket: ');
     }
   }
 
-  _broadcastChoice(choice) {
-    console.log('shout to the world!: ', choice);
-  }
-
   render() {
-    let items = this.props.hand.map((card, index) => {
-      return <Card key={index} color={card[1]} value={card[0]} changeCard={this._changeCard.bind(this)}/>;
-    });
+    let items;
+    if (this.props.hand !== 0) {
+      items = this.props.hand.map((card, index) => {
+        return <Card
+          key={index}
+          color={card[1]}
+          value={card[0]}
+          changeCard={this._changeCard.bind(this)}/>;
+      });
+    }
+
+    let optional;
+
+    if (this.state.condition) {
+      optional =
+      <PopUp style={styles.optional} title={'Play card or draw?'}
+        actionA={() => {
+          console.log('Draw a new card: game - line 57');
+          this.setState({condition: false});
+        }}
+        actionB={() => {
+          console.log('play a card from hand: game - line 61');
+          this.setState({condition: false});
+        }}
+        textA={'Draw new card'}
+        textB={'Play card from hand'} />
+    }
 
     return (
       <View style={styles.container}>
@@ -52,6 +70,7 @@ class game extends Component {
           <Text style={[styles.label, {color: '#fff'}]}>
             {this.state.value}
           </Text>
+          {optional}
         </View>
         <ScrollView style={styles.hand} horizontal={true}>
           {items}
