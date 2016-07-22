@@ -36,6 +36,7 @@ class game extends Component {
   }
 
   render() {
+    console.log(this.props.userId, +this.props.gameId);
     let items;
     if (this.props.hand !== 0) {
       items = this.props.hand.map((card, index) => {
@@ -52,19 +53,19 @@ class game extends Component {
     if (this.state.condition) {
       optional =
       <PopUp style={styles.optional} title={'Play card or draw?'}
+        textA={'Draw new card'}
         actionA={() => {
-          ws.send({
+          ws.send(JSON.stringify({
             route: 'drawCard',
-            userId: ,
-            gameId: ,
-          })
+            userId: this.props.userId,
+            gameId: +this.props.gameId,
+          }));
           this.setState({condition: false});
         }}
         actionB={() => {
           console.log('play a card from hand: game - line 61');
           this.setState({condition: false});
         }}
-        textA={'Draw new card'}
         textB={'Play card from hand'} />
     }
 

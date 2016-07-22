@@ -52,7 +52,6 @@ class login extends Component {
     })
     .then((response) => response.json())
     .then((parsedResponse) => {
-      console.log(parsedResponse);
       // set the appState in here
       this.setState({
         appUsername: parsedResponse.username,
@@ -113,10 +112,6 @@ class login extends Component {
       body: JSON.stringify({
         userId: this.state.userId,
       })
-    })
-    .then((response) => {
-      console.log('success');
-      console.log(response);
     })
     .catch((err) => {
       console.log(err);

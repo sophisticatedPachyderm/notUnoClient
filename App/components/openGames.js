@@ -69,16 +69,15 @@ class openGames extends Component {
 
       let cards = JSON.parse(assignedPlayers.currentPlayer.hand);
 
-      console.log('is the userId/gameId here?', this.props.parentState);
-
       this.props.navigator.push({
         title: 'game',
         component: Game,
         passProps: {
           game: parsedResponse,
-          userId: this.props.parentState.appUserId,
           players: assignedPlayers,
           hand: cards,
+          gameId: gameId,
+          userId: this.props.parentState.appUserId,
         }
       })
     })

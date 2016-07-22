@@ -21,7 +21,6 @@ class gameListItem extends Component {
     const game = this.props.game;
     const index = this.props.index;
     const chooseGame = this.props.chooseGame;
-    console.log(this.props);
 
     const colors = {
       0: '#2196F3',
