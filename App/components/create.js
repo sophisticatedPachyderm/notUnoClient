@@ -33,21 +33,22 @@ class create extends Component {
 
   // does simple validation and sends the new user's info to the server
   createUser() {
-    if (this.state.password !== this.state.confirm) {
-      this.showError('your passwords do not match');
-      return;
-    }
-    // send username and password through the socket
-    this.props.ws.send(JSON.stringify({
-      username: this.state.username,
-      password: this.state.password,
-      route: 'signup',
-    }));
-    // receive the response on the 'signup' route
-
-    // if username is untaken, create user and progress to fresh games screen
-
-    // else respond with error
+    fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=1', {
+      headers: {
+        method: 'GET',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((parsedResponse) => {
+      console.log('this is the parsed response for the REST request');
+      console.log(parsedResponse);
+      // reset the state here.
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   parentSetState(key, value) {

@@ -12,8 +12,6 @@ const OpenGames = require('./openGames');
 const Create = require('./create');
 const FullLogin = require('./fullInputField');
 const Button = require('./button');
-const appState = require('../appState');
-const gameState = require('../gameState');
 
 // get style sheet from external
 const styles = require('./styles/styles').login;
@@ -23,13 +21,14 @@ class login extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      appAuthorized: false,
+      appUsername: '',
+      appUserGames: [],
       username: '',
+      userId: null,
       password: '',
       error: '',
     }
-
-    // this.create = this.create.bind(this);
-    // this.login = this.login.bind(this);
 
     this.showError = (errorMessage) => {
       this.setState({error: errorMessage});
@@ -39,65 +38,68 @@ class login extends Component {
     }
   }
 
+  login() {
+    fetch('https://baconipsum.com/api/?type=meat-and-filler', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((parsedResponse) => {
+      console.log(parsedResponse);
+      // set the appState in here
+      this.accessGames();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  createNewGame() {
+    fetch('/api/game/creategame', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: this.state.userId,
+      })
+    })
+    .then((response) => {
+      console.log('success');
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   accessGames() {
-    // move forward in the navigation path to the user's games
     this.props.navigator.push({
       title: 'my games',
+      component: OpenGames,
       rightButtonTitle: 'add',
       onRightButtonPress: () => {
         console.log('game added');
-        this.props.ws.send(JSON.stringify({
-          message: null,
-          route: 'createGame',
-        }));
+        this.createGame();
       },
-      component: OpenGames,
-      // passProps: {
-      //   cards: this.props.cards,
-      //   openGames: this.props.openGames
-      // },
       passProps: {
-        openGames: appState.openGames,
-      },
-    });
-
-    // then this will make the call to get the users games
-    this.props.ws.send(JSON.stringify({
-      route: 'allGames',
-      userId: appState.userId,
-    }));
+        state: this.state,
+      }
+    })
   }
 
-  // move user to the create page
-  create() {
+  openCreateScreen() {
     this.props.navigator.push({
       title: 'create user',
       component: Create,
-      passProps: {ws: this.props.ws, accessGames: this.accessGames.bind(this)},
-    });
-  }
-
-  // send the user's log in info to the server via websocket
-  login() {
-    // simple check for empty strings in the username/password
-    if (!this.state.username || !this.state.password) {
-      this.showError('username and/or password are not strings');
-      return;
-    }
-    // send username and password through the socket
-    this.props.ws.send(JSON.stringify({
-      username: this.state.username,
-      password: this.state.password,
-      route: 'signin',
-    }));
-    // THIS IS STUPID AND WE SHOULD FIX IT LATER, but it works
-    setTimeout(() => {
-      if (appState.authorized) {
-        this.accessGames();
-      } else {
-        this.showError('sign-in failure because of credentials');
-      }
-    }, 1500);
+      passProps: {
+        accessGames: 'hi',
+      },
+    })
   }
 
   parentSetState(key, value) {
@@ -107,7 +109,6 @@ class login extends Component {
   }
 
   render() {
-    console.log('appState:', appState);
     return (
       <View style={styles.container}>
         <Text style={styles.title}> Sign into Your Account </Text>
@@ -121,7 +122,7 @@ class login extends Component {
           }}
           pw={true}/>
         <Button caption={'submit'} callback={this.login.bind(this)} />
-        <Button caption={'create'} callback={this.create.bind(this)} />
+        <Button caption={'create'} callback={this.openCreateScreen.bind(this)} />
         <Text style={alertStyles.alert}> { this.state.error } </Text>
       </View>
     );

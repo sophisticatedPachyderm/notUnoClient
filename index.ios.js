@@ -41,8 +41,6 @@ class notUno extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameState: gameState,
-      appState: appState,
     };
   }
 
