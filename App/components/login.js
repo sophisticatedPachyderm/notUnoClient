@@ -12,88 +12,146 @@ const OpenGames = require('./openGames');
 const Create = require('./create');
 const FullLogin = require('./fullInputField');
 const Button = require('./button');
-const appState = require('../appState');
-const gameState = require('../gameState');
 
 // get style sheet from external
 const styles = require('./styles/styles').login;
+const alertStyles = require('./styles/styles').create;
 
 class login extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      appAuthorized: false,
+      appUserId: null,
+      appUsername: '',
+      appUserGames: [],
       username: '',
       password: '',
       error: '',
-      authorized: false,
     }
-    this.create = this.create.bind(this);
-    this.login = this.login.bind(this);
-  }
 
-  accessGames() {
-    // move forward in the navigation path to the user's games
-    this.props.navigator.push({
-      title: 'my games',
-      rightButtonTitle: 'add',
-      onRightButtonPress: () => {
-        console.log('game added');
-        this.props.ws.sendData({message: 'Duke, please add a game...'}, 'createGame');
-      },
-      component: OpenGames,
-      passProps: {cards: this.props.cards, openGames: this.props.openGames},
-      // passProps: {
-      //   openGames: appState.openGames
-      // },
-    });
-
-    // then this will make the call to get the users games
-    this.props.ws.send(JSON.stringify({
-      route: 'allGames',
-      gameId: 21,
-    }));
-  }
-
-  // move user to the create page
-  create() {
-    this.props.navigator.push({
-      title: 'create user',
-      component: Create,
-      passProps: {ws: this.props.ws, accessGames: this.accessGames.bind(this)},
-    });
-  }
-
-  // send the user's log in info to the server via websocket
-  login() {
-    // simple check for empty strings in the username/password
-    if (!this.state.username || !this.state.password) {
-      this.setState({error: 'invalid username or password!'});
-      console.log('invalid username or password');
+    this.showError = (errorMessage) => {
+      this.setState({error: errorMessage});
       setTimeout(() => {
         this.setState({error: ''});
       }, 5000);
-      return;
     }
-    // send username and password through the socket
-    this.props.ws.send(JSON.stringify({
-      username: this.state.username,
-      password: this.state.password,
-      route: 'signin',
-    }));
-    // receive the response on the 'signin' route
-    // if the response if affirmative, allow passage to a user's games
+  }
 
-      // call accessGames
-      this.accessGames();
-    // else respond with error
-      // NONE SHALL PASS
+  login() {
+    fetch('https://notuno.herokuapp.com/api/user/auth/signin', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      })
+    })
+    .then((response) => response.json())
+    .then((parsedResponse) => {
+      console.log(parsedResponse);
+      // set the appState in here
+      this.setState({
+        appUsername: parsedResponse.username,
+        appUserId: parsedResponse.userId,
+        appAuthorized: (parsedResponse.response === 'affirmative'),
+      })
+    })
+    .then(() => {
+      // check if we're allowed to move forward
+      if (this.state.appAuthorized) {
+        this.setState({
+          username: '',
+          passworD: '',
+        })
+        // send a request to the server to get that user's games by Id
+        fetch('https://notuno.herokuapp.com/api/game/allgames', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: this.state.appUserId
+          })
+        })
+        // another fetch request...
+        .then((response) => response.json())
+        .then((parsedResponse) => {
+          let output = [];
+          for (let key in parsedResponse) {
+            output.push({
+              gameId: key,
+              players: parsedResponse[key].usernameList,
+            })
+          }
+          this.setState({appUserGames: output});
+        })
+        .then(() => {
+          this.accessGames(this.state);
+        }).
+        catch((err) => {
+          console.log('second fetch error');
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  createNewGame() {
+    fetch('/api/game/creategame', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: this.state.userId,
+      })
+    })
+    .then((response) => {
+      console.log('success');
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  accessGames(properties) {
+    this.props.navigator.push({
+      title: 'my games',
+      component: OpenGames,
+      rightButtonTitle: 'add',
+      onRightButtonPress: () => {
+        console.log('game added');
+        this.createGame();
+      },
+      passProps: {
+        parentState: properties,
+      }
+    })
+  }
+
+  openCreateScreen() {
+    this.props.navigator.push({
+      title: 'create user',
+      component: Create,
+      passProps: {
+        accessGames: 'hi',
+      },
+    })
   }
 
   parentSetState(key, value) {
-    let that = this;
     let obj = {};
     obj[key] = value;
-    that.setState(obj);
+    this.setState(obj);
   }
 
   render() {
@@ -109,9 +167,9 @@ class login extends Component {
             this.parentSetState('password', text);
           }}
           pw={true}/>
-        <Button caption={'submit'} callback={() => this.login()} />
-        <Button caption={'create'} callback={this.create} />
-        <Text > { this.state.error } </Text>
+        <Button caption={'submit'} callback={this.login.bind(this)} />
+        <Button caption={'create'} callback={this.openCreateScreen.bind(this)} />
+        <Text style={alertStyles.alert}> { this.state.error } </Text>
       </View>
     );
   }

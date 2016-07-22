@@ -17,15 +17,11 @@ const ws = require('./socket/socketUtil');
 const sampleData = require('./sampleData');
 const appState = require('./App/appState');
 const gameState = require('./App/gameState');
-/*
-====================
-As of right now, the app is expecting data to come in through a few different ways. First is the player's current hand. That's represented by the 'card' variable below.
 
-Second is the players open games. Represented by the openGames variable below.
+const _saveToState = (state, property, data) => {
+  state[property] = data;
+};
 
-Right now, I haven't written in a way to get the deck or the other players' card counts.
-====================
-*/
 
 const styles = StyleSheet.create({
   container: {
@@ -45,8 +41,6 @@ class notUno extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameState: gameState,
-      appState: appState,
     };
   }
 
@@ -57,9 +51,14 @@ class notUno extends Component {
         initialRoute={{
           title: 'Login',
           component: Login,
+          rightButtonTitle: 'logout',
+          onRightButtonPress: () => {
+            console.log('logging out');
+            _saveToState(appState, 'authorized', false);
+            _saveToState(appState, 'username', '');
+            _saveToState(appState, 'openGames', []);
+          },
           passProps: {
-            cards: sampleData.cards,
-            openGames: sampleData.openGames,
             ws: ws,
           }
         }}

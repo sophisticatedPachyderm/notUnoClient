@@ -20,7 +20,26 @@ const clientWsRoutes = {
   },
 
   signUpResponse: (response) => {
+    console.log('sign up', response);
+  },
+
+  getGameResponse: (response) => {
+    console.log('from get game');
     console.log(response);
+  },
+
+  allGamesResponse: (response) => {
+    console.log('get all games for user');
+    console.log(response);
+    let results = response.results;
+    appState.openGames = [];
+    for (let key in results) {
+      appState.openGames.push({
+        players: results[key].usernameList,
+        currentPlayer: '',
+        gameId: results[key].gameId,
+      });
+    }
   }
 };
 

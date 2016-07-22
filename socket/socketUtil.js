@@ -11,13 +11,11 @@ ws.onopen = (e) => {
 };
 
 ws.onmessage = (e) => {
-  // anything is received
-  let message = JSON.parse(e.data);
-  console.log(message);
-  console.log(message.route);
-
   // =============
-  // Use this once return routes are set up
+  // since these are mostly for testing, let's get rid of these before monday
+  // =============
+  let message = JSON.parse(e.data);
+  
   // =============
   let route = message.route;
   if (socketRoutes[route]) {

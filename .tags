@@ -51,3 +51,34 @@ const.0	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/component
 const.1	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      0: '#2196F3',$/;"	property	line:53
 const.2	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      1: '#4CAF50',$/;"	property	line:54
 const.3	/Users/evanmoncuso/Documents/coding/js/notUnoClient/notUno/App/components/gameListItem.js	/^      2: '#F44336',$/;"	property	line:55
+module.exports.card	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/styles/styles.js	/^module.exports = {$/;"	property	line:206
+module.exports.create	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/styles/styles.js	/^  card: card,$/;"	property	line:207
+module.exports.game	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/styles/styles.js	/^  create: create,$/;"	property	line:208
+module.exports.login	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/styles/styles.js	/^  game: game,$/;"	property	line:209
+module.exports.openGames	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/styles/styles.js	/^  login: login,$/;"	property	line:210
+module.exports.popup	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/styles/styles.js	/^  openGames: openGames,$/;"	property	line:211
+module.exports.gameListItem	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/styles/styles.js	/^  popup: popup,$/;"	property	line:212
+constructor	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/gameListItem.js	/^  constructor(props) {$/;"	function	line:16
+render	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/gameListItem.js	/^  render() {$/;"	function	line:20
+const.0	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/gameListItem.js	/^    const colors = {$/;"	property	line:25
+const.1	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/gameListItem.js	/^      0: '#2196F3',$/;"	property	line:26
+const.2	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/gameListItem.js	/^      1: '#4CAF50',$/;"	property	line:27
+const.3	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/gameListItem.js	/^      2: '#F44336',$/;"	property	line:28
+constructor	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/index.ios.js	/^  constructor(props) {$/;"	function	line:50
+state.gameState	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/index.ios.js	/^    this.state = {$/;"	property	line:52
+state.appState	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/index.ios.js	/^      gameState: gameState,$/;"	property	line:53
+render	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/index.ios.js	/^  render() {$/;"	function	line:58
+constructor	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/openGames.js	/^  constructor(props) {$/;"	function	line:18
+state.games	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/openGames.js	/^    this.state ={$/;"	property	line:20
+chooseGame	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/openGames.js	/^  chooseGame(game) {$/;"	function	line:26
+render	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/openGames.js	/^  render() {$/;"	function	line:34
+constructor	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  constructor(props) {$/;"	function	line:22
+state.username	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^    this.state = {$/;"	property	line:24
+state.password	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^      username: '',$/;"	property	line:25
+state.error	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^      password: '',$/;"	property	line:26
+state.authorized	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^      error: '',$/;"	property	line:27
+accessGames	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  accessGames() {$/;"	function	line:40
+create	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  create() {$/;"	function	line:70
+login	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  login() {$/;"	function	line:79
+parentSetState	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  parentSetState(key, value) {$/;"	function	line:109
+render	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  render() {$/;"	function	line:116
