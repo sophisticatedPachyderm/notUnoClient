@@ -65,7 +65,7 @@ class login extends Component {
       if (this.state.appAuthorized) {
         this.setState({
           username: '',
-          passworD: '',
+          password: '',
         })
         // send a request to the server to get that user's games by Id
         fetch('https://notuno.herokuapp.com/api/game/allgames', {
@@ -143,9 +143,13 @@ class login extends Component {
       title: 'create user',
       component: Create,
       passProps: {
-        accessGames: 'hi',
+        appAuthorized: this.state.appAuthorized,
+        appUserId: this.state.appUserId,
+        appUsername: this.state.appUsername,
+        appUserGames: this.state.appUserGames,
+        accessGames: this.accessGames.bind(this),
       },
-    })
+    });
   }
 
   parentSetState(key, value) {
