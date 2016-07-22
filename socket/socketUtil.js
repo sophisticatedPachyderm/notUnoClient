@@ -15,7 +15,6 @@ ws.onmessage = (e) => {
   // since these are mostly for testing, let's get rid of these before monday
   // =============
   let message = JSON.parse(e.data);
-  
   // =============
   let route = message.route;
   if (socketRoutes[route]) {

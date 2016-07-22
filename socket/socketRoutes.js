@@ -7,40 +7,9 @@ const _saveToState = (state, property, data) => {
 };
 
 const clientWsRoutes = {
-  //--------------- USER RESPONSES --------------------//
-
-  // response coming back after trying to log in
-  signInResponse: (response) => {
-    if (response.response === 'affirmative') {
-      _saveToState(appState, 'username', response.username);
-      _saveToState(appState, 'authorized', true);
-    } else {
-      console.log('sign-in failure because of credentials');
-    }
-  },
-
-  signUpResponse: (response) => {
-    console.log('sign up', response);
-  },
-
-  getGameResponse: (response) => {
-    console.log('from get game');
-    console.log(response);
-  },
-
-  allGamesResponse: (response) => {
-    console.log('get all games for user');
-    console.log(response);
-    let results = response.results;
-    appState.openGames = [];
-    for (let key in results) {
-      appState.openGames.push({
-        players: results[key].usernameList,
-        currentPlayer: '',
-        gameId: results[key].gameId,
-      });
-    }
-  }
+  //--------------- GAMES RESPONSES --------------------//
+  //---------- aka all there is anymore... -------------//\
+  
 };
 
 module.exports = clientWsRoutes;
