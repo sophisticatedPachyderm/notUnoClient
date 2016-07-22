@@ -40,7 +40,6 @@ class gameListItem extends Component {
           <View style={[styles.gameContainer, {backgroundColor: colors[index % 4]}]}>
             <Text style={styles.gameId}>game ID: {game.gameId || 'n/a'}</Text>
             <View style={styles.players}>{players}</View>
-            <Text style={styles.turn}>turn: {game.currentPlayer}</Text>
           </View>
         </View>
       </TouchableHighlight>

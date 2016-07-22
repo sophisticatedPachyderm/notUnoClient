@@ -5,7 +5,6 @@ import {
   View,
   TextInput,
   StyleSheet,
-  TouchableHighlight
 } from 'react-native';
 
 const GameListItem = require('./gameListItem');
@@ -27,14 +26,22 @@ class openGames extends Component {
     this.props.navigator.push({
       title: 'game',
       component: Game,
-      passProps: {cards: this.props.cards},
     });
   }
 
   render() {
-    if (this.props.length !== 0) {
-      games = this.props.openGames.map((game, index) => {
-        return <GameListItem key={index} index={index} game={game} chooseGame={this.chooseGame}/>
+    const openGames = this.props.parentState.appUserGames;
+    console.log(openGames);
+    let games;
+    if (openGames.length === 0) {
+      console.log('its nothing')
+    } else {
+      games = openGames.map((game, index) => {
+        return <GameListItem
+          key={index}
+          index={index}
+          game={game}
+          chooseGame={this.chooseGame}/>
       });
     }
     return (

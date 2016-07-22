@@ -22,10 +22,10 @@ class login extends Component {
     super(props);
     this.state = {
       appAuthorized: false,
+      appUserId: null,
       appUsername: '',
       appUserGames: [],
       username: '',
-      userId: null,
       password: '',
       error: '',
     }
@@ -39,24 +39,63 @@ class login extends Component {
   }
 
   login() {
-    fetch('https://baconipsum.com/api/?type=meat-and-filler', {
-      method: 'GET',
+    fetch('https://notuno.herokuapp.com/api/user/auth/signin', {
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      })
     })
     .then((response) => response.json())
     .then((parsedResponse) => {
       console.log(parsedResponse);
       // set the appState in here
+      this.setState({
+        appUsername: parsedResponse.username,
+        appUserId: parsedResponse.userId,
+        appAuthorized: (parsedResponse.response === 'affirmative'),
+      })
     })
     .then(() => {
       // check if we're allowed to move forward
       if (this.state.appAuthorized) {
+        this.setState({
+          username: '',
+          passworD: '',
+        })
         // send a request to the server to get that user's games by Id
+        fetch('https://notuno.herokuapp.com/api/game/allgames', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: this.state.appUserId
+          })
+        })
         // another fetch request...
-        // THEN
+        .then((response) => response.json())
+        .then((parsedResponse) => {
+          let output = [];
+          for (let key in parsedResponse) {
+            output.push({
+              gameId: key,
+              players: parsedResponse[key].usernameList,
+            })
+          }
+          this.setState({appUserGames: output});
+        })
+        .then(() => {
+          this.accessGames(this.state);
+        }).
+        catch((err) => {
+          console.log('second fetch error');
+        });
       }
     })
     .catch((err) => {
@@ -84,7 +123,7 @@ class login extends Component {
     })
   }
 
-  accessGames() {
+  accessGames(properties) {
     this.props.navigator.push({
       title: 'my games',
       component: OpenGames,
@@ -94,7 +133,7 @@ class login extends Component {
         this.createGame();
       },
       passProps: {
-        state: this.state,
+        parentState: properties,
       }
     })
   }
