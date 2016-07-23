@@ -4,13 +4,14 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-constructor	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  constructor(props) {$/;"	function	line:22
-state.username	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^    this.state = {$/;"	property	line:24
-state.password	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^      username: '',$/;"	property	line:25
-state.error	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^      password: '',$/;"	property	line:26
-state.authorized	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^      error: '',$/;"	property	line:27
-accessGames	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  accessGames() {$/;"	function	line:40
-create	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  create() {$/;"	function	line:70
-login	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  login() {$/;"	function	line:79
-parentSetState	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  parentSetState(key, value) {$/;"	function	line:109
-render	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  render() {$/;"	function	line:116
+const.b	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^const colorConverter = {$/;"	property	line:18
+const.g	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  b: '#2196F3',$/;"	property	line:19
+const.r	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  g: '#4CAF50',$/;"	property	line:20
+const.y	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  r: '#F44336',$/;"	property	line:21
+constructor	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  constructor(props) {$/;"	function	line:26
+this.state.currentCard	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^    this.state = {$/;"	property	line:28
+getPlayerFromId	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  getPlayerFromId(userId) {$/;"	function	line:52
+opponentDrawCard	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  opponentDrawCard(response) {$/;"	function	line:62
+opponentPlayCard	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  opponentPlayCard(response) {$/;"	function	line:69
+_changeCard	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  _changeCard(newColor, newValue) {$/;"	function	line:93
+render	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  render() {$/;"	function	line:100
