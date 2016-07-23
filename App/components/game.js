@@ -36,7 +36,7 @@ class game extends Component {
         },
 
         drawCardResponse: {
-          mines: (response) => { console.log('My move, server response:', response.response); },
+          mines: this.myTurnDraw.bind(this),
           opponent: this.opponentDrawCard.bind(this)
         }
       }
@@ -44,10 +44,13 @@ class game extends Component {
 
     this.state = {
       currentCard: this.props.currentCard,
-      color: colorConverter[this.props.currentCard[1]],
-      value: this.props.currentCard[0],
       mustChooseAction: true,
       ws: ws,
+      hand: this.props.hand,
+      topPlayerHand: this.props.players.topPlayer,
+      leftPlayerHand: this.props.players.leftPlayer,
+      rightPlayerHand: this.props.players.rightPlayer,
+
     };
 
 
@@ -63,16 +66,22 @@ class game extends Component {
     return undefined;
   }
 
+  myTurnDraw(response) {
+    let temp = this.state.hand.slice();
+    temp.push(response.cardDrawn);
+    this.setState({hand: temp});
+  }
+
   opponentDrawCard(response) {
     //handle any animations and state changes here
-
+    console.log('opponent draws card', response);
     //this is the player that drew the card
     let player = this.getPlayerFromId(response.userId);
   }
 
   opponentPlayCard(response) {
     //handle any animations and state changes here
-
+    console.log(response);
     //this is the player that played the card
     let player = this.getPlayerFromId(response.userId);
 
@@ -94,27 +103,28 @@ class game extends Component {
     }
   }
 
-  _changeCard(newColor, newValue) {
-    if (!this.state.condition) {
-      this.setState({color: newColor, value: newValue});
-      console.log('send through websocket: ');
-    }
+  changeCard(newCard, index) {
+    this.setState({currentCard: newCard});
+    console.log('send through websocket: ');
+    // send the chosen one through the websocket
+    this.state.ws.send(JSON.stringify({
+      userId: this.props.userId,
+      gameId: this.props.gameId,
+      cardIndex: index,
+      route: 'myTurn',
+    }));
   }
 
   render() {
-
-    console.log('everything coming in on the props');
-    console.log(this.props);
-
     let cardsArray;
     // if there are cards to render put them in the items variabe
     if (this.props.hand !== 0) {
       cardsArray = this.props.hand.map((card, index) => {
         return <Card
           key={index}
-          color={card[1]}
-          value={card[0]}
-          changeCard={this._changeCard.bind(this)}
+          card={card}
+          index={index}
+          changeCard={this.changeCard.bind(this)}
           colors={colorConverter}/>;
       });
     }
@@ -141,15 +151,16 @@ class game extends Component {
           this.setState({mustChooseAction: false});
         }} />
     }
+    console.log(this.state.topPlayer)
     return (
       <View style={styles.container}>
         <View style={{flex:0.25}} />
-        <View style={[styles.main, {backgroundColor: this.state.color}]}>
-          <OppView player={this.props.players.topPlayer} loc={'top'}/>
-          <OppView player={this.props.players.leftPlayer} loc={'left'}/>
-          <OppView player={this.props.players.rightPlayer} loc={'right'}/>
+        <View style={[styles.main, {backgroundColor: colorConverter[this.state.currentCard[1]]}]}>
+          <OppView player={this.state.topPlayerHand} loc={'top'}/>
+          <OppView player={this.state.leftPlayerHand} loc={'left'}/>
+          <OppView player={this.state.rightPlayerHand} loc={'right'}/>
           <Text style={[styles.label, {color: '#fff'}]}>
-            {this.state.value}
+            {this.state.currentCard[0]}
           </Text>
           {optional}
         </View>
