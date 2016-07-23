@@ -91,9 +91,6 @@ class login extends Component {
         })
         .then(() => {
           this.accessGames(this.state);
-        }).
-        catch((err) => {
-          console.log('second fetch error');
         });
       }
     })
@@ -125,7 +122,7 @@ class login extends Component {
       rightButtonTitle: 'add',
       onRightButtonPress: () => {
         console.log('game added');
-        this.createGame();
+        this.createNewGame();
       },
       passProps: {
         parentState: properties,
