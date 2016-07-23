@@ -118,7 +118,6 @@ class login extends Component {
   }
 
   startGame(gameId, cb) {
-    console.log(gameId, this.state.appUserId);
     fetch('https://notuno.herokuapp.com/api/game/startgame', {
       method: 'POST',
       headers: {

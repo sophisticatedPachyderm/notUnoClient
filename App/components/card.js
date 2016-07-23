@@ -13,11 +13,12 @@ const styles = require('./styles/styles').card;
 
 class card extends Component {
   render() {
-    const color = this.props.colors[this.props.color];
-    const value = this.props.value;
+    const color = this.props.colors[this.props.card[1]];
+    const value = this.props.card[0];
     changeCard = this.props.changeCard;
+    const index = this.props.index;
     return (
-       <TouchableHighlight style={[styles.card, {backgroundColor: color}]} onPress={() => changeCard(color, value)}>
+       <TouchableHighlight style={[styles.card, {backgroundColor: color}]} onPress={() => changeCard(this.props.card, index)}>
         <Text style={styles.val}>{value}</Text>
       </TouchableHighlight>
     );
