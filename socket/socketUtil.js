@@ -36,6 +36,8 @@ wsInit = (userId, routes) => {
     console.log('WebSocket is closed');
     console.log(e.code, e.reason);
   };
+
+  return ws;
 };
 
 
