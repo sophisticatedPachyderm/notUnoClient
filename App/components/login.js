@@ -100,7 +100,7 @@ class login extends Component {
   }
 
   createNewGame() {
-    fetch('/api/game/creategame', {
+    fetch('https://notuno.herokuapp.com/api/game/creategame', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
