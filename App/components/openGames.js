@@ -67,6 +67,7 @@ class openGames extends Component {
         }
       }
 
+
       let cards = JSON.parse(assignedPlayers.currentPlayer.hand);
 
       this.props.navigator.push({
@@ -78,6 +79,7 @@ class openGames extends Component {
           hand: cards,
           gameId: gameId,
           userId: this.props.parentState.appUserId,
+          currentCard: parsedResponse.playedCards[parsedResponse.playedCards.length - 1],
         }
       })
     })
