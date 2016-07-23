@@ -9,6 +9,8 @@ import {
 
 const GameListItem = require('./gameListItem');
 const Game = require('./game');
+const Button = require('./button');
+const JoinableGames = require('./joinableGames');
 
 // get style sheet from external
 const styles = require('./styles/styles').openGames;
@@ -69,7 +71,6 @@ class openGames extends Component {
         }
       }
 
-
       let cards = JSON.parse(assignedPlayers.currentPlayer.hand);
       let playedCards = JSON.parse(parsedResponse.playedCards);
       this.props.navigator.push({
@@ -89,6 +90,56 @@ class openGames extends Component {
     .catch((err) => {
       console.log(err);
     });
+
+  }
+
+  moveToJoinGames() {
+    fetch('https://notuno.herokuapp.com/api/game/getOpenGames', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: this.props.parentState.appUserId,
+      })
+    })
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      let joinableGames = jsonResponse.reduce((arr, game) => {
+        let obj = {
+          gameId: game.gameId,
+          players: 0,
+        };
+
+        if (game.p0Hand !== null) {
+          obj.players++;
+        } else if (game.p1Hand !== null) {
+          obj.players++;
+        } else if (game.p2Hand !== null) {
+          obj.players++;
+        } else if (game.p3Hand !== null) {
+          obj.players++;
+        }
+
+        arr.push(obj);
+        return arr;
+      }, []);
+
+      // then we will pass joinableGames to the next page
+
+      this.props.navigator.push({
+        title: 'join a game',
+        component: JoinableGames,
+        passProps: {
+          joinableGames: joinableGames,
+          userId: this.props.parentState.appUserId,
+        }
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   render() {
@@ -102,7 +153,7 @@ class openGames extends Component {
           key={index}
           index={index}
           game={game}
-          chooseGame={this.chooseGame.bind(this)}/>
+          callback={this.chooseGame.bind(this)}/>
       });
     }
     return (
@@ -113,6 +164,9 @@ class openGames extends Component {
           {games}
         </View>
         <Text> {this.state.error} </Text>
+        <Button
+          caption={'join game'}
+          callback={ this.moveToJoinGames.bind(this)} />
         <View style={{flex: 0.5}}></View>
       </View>
     )

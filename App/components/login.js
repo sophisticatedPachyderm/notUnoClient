@@ -111,8 +111,6 @@ class login extends Component {
       })
     })
     .then((response) => {
-      console.log('game created...');
-      console.log(response);
     })
     .catch((err) => {
       console.log(err);
@@ -125,7 +123,6 @@ class login extends Component {
       component: OpenGames,
       rightButtonTitle: 'add',
       onRightButtonPress: () => {
-        console.log('game added');
         this.createNewGame();
       },
       passProps: {

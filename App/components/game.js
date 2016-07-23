@@ -30,7 +30,7 @@ class game extends Component {
       mustChooseAction: true,
     };
 
-    wsInit(props.userId, 
+    wsInit(props.userId,
 
       //these are routes to be passed to websocket
       {
@@ -54,7 +54,6 @@ class game extends Component {
         return player;
       }
     }
-
     return undefined;
   }
 
@@ -62,14 +61,14 @@ class game extends Component {
     //handle any animations and state changes here
 
     //this is the player that drew the card
-    let player = getPlayerFromId(response.userId); 
+    let player = getPlayerFromId(response.userId);
   }
 
   opponentPlayCard(response) {
     //handle any animations and state changes here
 
     //this is the player that played the card
-    let player = getPlayerFromId(response.userId); 
+    let player = getPlayerFromId(response.userId);
 
     let cardPlayed = response.cardPlayed;
 
@@ -121,7 +120,7 @@ class game extends Component {
       <PopUp style={styles.optional} title={'Play card or draw?'}
         textA={'Draw new card'}
         actionA={() => {
-          ws.send(JSON.stringify({
+          wsInit.ws.send(JSON.stringify({
             route: 'drawCard',
             userId: this.props.userId,
             gameId: +this.props.gameId,
