@@ -16,14 +16,20 @@ const ws = require('../../socket/socketUtil');
 
 // get style sheet from external
 const styles = require('./styles/styles').game;
+const colorConverter = {
+  b: '#2196F3',
+  g: '#4CAF50',
+  r: '#F44336',
+  y: '#FFEB3B',
+}
 
 class game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCard: '',
-      color: '#fff',
-      value: '',
+      currentCard: this.props.currentCard,
+      color: colorConverter[this.props.currentCard[1]],
+      value: this.props.currentCard[0],
       mustChooseAction: true,
     }
   }
@@ -36,7 +42,6 @@ class game extends Component {
   }
 
   render() {
-    console.log(this.props.userId, +this.props.gameId);
     let items;
     if (this.props.hand !== 0) {
       items = this.props.hand.map((card, index) => {
