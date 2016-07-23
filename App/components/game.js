@@ -12,7 +12,7 @@ import {
 
 const Card = require('./card');
 const PopUp = require('./popup');
-const ws = require('../../socket/socketUtil');
+const wsInit = require('../../socket/socketUtil');
 
 // get style sheet from external
 const styles = require('./styles/styles').game;
@@ -25,6 +25,64 @@ class game extends Component {
       color: '#fff',
       value: '',
       condition: true,
+    };
+
+    wsInit(props.userId, 
+
+      //these are routes to be passed to websocket
+      {
+        myTurnResponse: {
+          mines: (response) => { console.log('My move, server response:', response.response); },
+          opponent: this.opponentPlayCard.bind(this)
+        },
+
+        drawCardResponse: {
+          mines: (response) => { console.log('My move, server response:', response.response); },
+          opponent: this.opponentDrawCard.bind(this)
+        }
+      }
+    );
+  }
+
+  getPlayerFromId(userId) {
+    for (let k in this.props.players) {
+      let player = this.props.players[k];
+      if (player !== null && player.userId === userId) {
+        return player;
+      }
+    }
+
+    return undefined;
+  }
+
+  opponentDrawCard(response) {
+    //handle any animations and state changes here
+
+    //this is the player that drew the card
+    let player = getPlayerFromId(response.userId); 
+  }
+
+  opponentPlayCard(response) {
+    //handle any animations and state changes here
+
+    //this is the player that played the card
+    let player = getPlayerFromId(response.userId); 
+
+    let cardPlayed = response.cardPlayed;
+
+    if (response.gameOver === true) {
+      //someone else won! Boo hoo
+
+    } else if (response.currentPlayer === this.props.myPosition) {
+      //its my turn now!
+
+      if (cardPlayed[0] === 'takeTwo' || cardPlayed[0] === 'takeFour') { //then i just drew cards...
+      //look at the last 4 cards in my new hand, and that will tell me what i just drew
+        let myNewHand = response.nextHand;
+      }
+    } else {
+      //someone else's turn
+
     }
   }
 
