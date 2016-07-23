@@ -20,7 +20,7 @@ class gameListItem extends Component {
   render() {
     const game = this.props.game;
     const index = this.props.index;
-    const chooseGame = this.props.chooseGame;
+    const callback = this.props.callback;
 
     const colors = {
       0: '#2196F3',
@@ -29,11 +29,17 @@ class gameListItem extends Component {
       3: '#FFEB3B',
     }
 
-    let players = game.players.map((person, index) => {
-      return <Text key={index} style={{padding:6}}>{person}</Text>
-    });
+    let players;
+
+    if (Array.isArray(game.players)) {
+      players = game.players.map((person, index) => {
+        return <Text key={index} style={{padding:6}}>{person}</Text>
+      });
+    } else {
+      players = <Text> this game has {game.players} player(s) </Text>
+    }
     return (
-      <TouchableHighlight style={styles.container} onPress={() => {chooseGame(game.gameId)}}>
+      <TouchableHighlight style={styles.container} onPress={() => {callback(game.gameId)}}>
         <View>
           <View style={{flex:0.05}} />
           <View style={[styles.gameContainer, {backgroundColor: colors[index % 4]}]}>
