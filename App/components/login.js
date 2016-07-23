@@ -117,6 +117,33 @@ class login extends Component {
     })
   }
 
+  startGame(gameId, cb) {
+    console.log(gameId, this.state.appUserId);
+    fetch('https://notuno.herokuapp.com/api/game/startgame', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: this.state.appUserId,
+        gameId: gameId,
+      }),
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      if (responseJson.error === 'Game has already started!') {
+        cb();
+      } else {
+        console.log(responseJson);
+      }
+    })
+    .catch((err) => {
+      console.log(err, 'error starting game');
+      cb();
+    });
+  }
+
   accessGames(properties) {
     this.props.navigator.push({
       title: 'my games',
@@ -127,6 +154,7 @@ class login extends Component {
       },
       passProps: {
         parentState: properties,
+        startGame: this.startGame.bind(this),
       }
     })
   }

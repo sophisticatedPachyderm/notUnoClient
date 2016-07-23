@@ -153,7 +153,9 @@ class openGames extends Component {
           key={index}
           index={index}
           game={game}
-          callback={this.chooseGame.bind(this)}/>
+          userId={this.props.parentState.appUserId}
+          callback={this.chooseGame.bind(this)}
+          startGame={this.props.startGame}/>
       });
     }
     return (

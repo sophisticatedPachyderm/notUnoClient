@@ -21,7 +21,8 @@ class gameListItem extends Component {
     const game = this.props.game;
     const index = this.props.index;
     const callback = this.props.callback;
-
+    const startGame = this.props.startGame;
+    const userId = this.props.userId;
     const colors = {
       0: '#2196F3',
       1: '#4CAF50',
@@ -39,7 +40,11 @@ class gameListItem extends Component {
       players = <Text> this game has {game.players} player(s) </Text>
     }
     return (
-      <TouchableHighlight style={styles.container} onPress={() => {callback(game.gameId)}}>
+      <TouchableHighlight style={styles.container} onPress={() => {
+          startGame(game.gameId, () => {
+            callback(game.gameId);
+          });
+        }}>
         <View>
           <View style={{flex:0.05}} />
           <View style={[styles.gameContainer, {backgroundColor: colors[index % 4]}]}>
