@@ -54,10 +54,13 @@ class openGames extends Component {
         leftPlayer: null,
       };
 
+      var myPosition;
+
       for (let i=0; i < players.length; i++) {
         let player = players[i];
         if (player.userId === userId) {
           assignedPlayers.currentPlayer = player;
+          myPosition = player.position;
         } else if (assignedPlayers.topPlayer === null) {
           assignedPlayers.topPlayer = player;
         } else if (assignedPlayers.leftPlayer === null) {
@@ -80,8 +83,9 @@ class openGames extends Component {
           gameId: gameId,
           userId: this.props.parentState.appUserId,
           currentCard: playedCards[playedCards.length-1],
+          myPosition: myPosition
         }
-      })
+      });
     })
     .catch((err) => {
       console.log(err);
