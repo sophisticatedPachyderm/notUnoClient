@@ -107,8 +107,12 @@ class login extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userId: this.state.userId,
+        userId: this.state.appUserId,
       })
+    })
+    .then((response) => {
+      console.log('game created...');
+      console.log(response);
     })
     .catch((err) => {
       console.log(err);
