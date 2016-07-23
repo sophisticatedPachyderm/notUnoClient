@@ -3,10 +3,6 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  TextInput,
-  StyleSheet,
-  TouchableHighlight,
-  Dimensions,
   ScrollView
 } from 'react-native';
 
@@ -16,6 +12,7 @@ const wsInit = require('../../socket/socketUtil');
 
 // get style sheet from external
 const styles = require('./styles/styles').game;
+
 const colorConverter = {
   b: '#2196F3',
   g: '#4CAF50',
@@ -100,14 +97,20 @@ class game extends Component {
   }
 
   render() {
-    let items;
+
+    console.log('everything coming in on the props');
+    console.log(this.props);
+
+    let cardsArray;
+    // if there are cards to render put them in the items variabe
     if (this.props.hand !== 0) {
-      items = this.props.hand.map((card, index) => {
+      cardsArray = this.props.hand.map((card, index) => {
         return <Card
           key={index}
           color={card[1]}
           value={card[0]}
-          changeCard={this._changeCard.bind(this)}/>;
+          changeCard={this._changeCard.bind(this)}
+          colors={colorConverter}/>;
       });
     }
 
@@ -144,7 +147,7 @@ class game extends Component {
           {optional}
         </View>
         <ScrollView style={styles.hand} horizontal={true}>
-          {items}
+          {cardsArray}
         </ScrollView>
       </View>
     );

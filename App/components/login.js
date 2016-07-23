@@ -91,9 +91,6 @@ class login extends Component {
         })
         .then(() => {
           this.accessGames(this.state);
-        }).
-        catch((err) => {
-          console.log('second fetch error');
         });
       }
     })
