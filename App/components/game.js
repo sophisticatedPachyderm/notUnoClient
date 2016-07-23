@@ -25,14 +25,8 @@ const colorConverter = {
 class game extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentCard: this.props.currentCard,
-      color: colorConverter[this.props.currentCard[1]],
-      value: this.props.currentCard[0],
-      mustChooseAction: true,
-    };
 
-    wsInit(props.userId,
+    let ws = wsInit(props.userId,
 
       //these are routes to be passed to websocket
       {
@@ -47,6 +41,16 @@ class game extends Component {
         }
       }
     );
+
+    this.state = {
+      currentCard: this.props.currentCard,
+      color: colorConverter[this.props.currentCard[1]],
+      value: this.props.currentCard[0],
+      mustChooseAction: true,
+      ws: ws,
+    };
+
+
   }
 
   getPlayerFromId(userId) {
@@ -63,14 +67,14 @@ class game extends Component {
     //handle any animations and state changes here
 
     //this is the player that drew the card
-    let player = getPlayerFromId(response.userId);
+    let player = this.getPlayerFromId(response.userId);
   }
 
   opponentPlayCard(response) {
     //handle any animations and state changes here
 
     //this is the player that played the card
-    let player = getPlayerFromId(response.userId);
+    let player = this.getPlayerFromId(response.userId);
 
     let cardPlayed = response.cardPlayed;
 
@@ -122,7 +126,7 @@ class game extends Component {
       <PopUp style={styles.optional} title={'Play card or draw?'}
         textA={'Draw new card'}
         actionA={() => {
-          wsInit.ws.send(JSON.stringify({
+          this.state.ws.send(JSON.stringify({
             route: 'drawCard',
             userId: this.props.userId,
             gameId: +this.props.gameId,
