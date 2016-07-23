@@ -16,15 +16,21 @@ const ws = require('../../socket/socketUtil');
 
 // get style sheet from external
 const styles = require('./styles/styles').game;
+const colorConverter = {
+  b: '#2196F3',
+  g: '#4CAF50',
+  r: '#F44336',
+  y: '#FFEB3B',
+}
 
 class game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCard: '',
-      color: '#fff',
-      value: '',
-      condition: true,
+      currentCard: this.props.currentCard,
+      color: colorConverter[this.props.currentCard[1]],
+      value: this.props.currentCard[0],
+      mustChooseAction: true,
     }
   }
 
@@ -36,7 +42,6 @@ class game extends Component {
   }
 
   render() {
-    console.log(this.props.userId, +this.props.gameId);
     let items;
     if (this.props.hand !== 0) {
       items = this.props.hand.map((card, index) => {
@@ -50,7 +55,7 @@ class game extends Component {
 
     let optional;
 
-    if (this.state.condition) {
+    if (this.state.mustChooseAction) {
       optional =
       <PopUp style={styles.optional} title={'Play card or draw?'}
         textA={'Draw new card'}
@@ -60,13 +65,15 @@ class game extends Component {
             userId: this.props.userId,
             gameId: +this.props.gameId,
           }));
-          this.setState({condition: false});
+          // this will also need to act on the response that the server sends
+          this.setState({mustChooseAction: false});
         }}
+        textB={'Play card from hand'}
         actionB={() => {
           console.log('play a card from hand: game - line 61');
-          this.setState({condition: false});
-        }}
-        textB={'Play card from hand'} />
+          // This will let the player choose a card they currently have to play
+          this.setState({mustChooseAction: false});
+        }} />
     }
 
     return (
