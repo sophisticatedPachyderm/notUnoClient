@@ -122,7 +122,7 @@ class login extends Component {
       rightButtonTitle: 'add',
       onRightButtonPress: () => {
         console.log('game added');
-        this.createGame();
+        this.createNewGame();
       },
       passProps: {
         parentState: properties,

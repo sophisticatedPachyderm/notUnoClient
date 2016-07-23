@@ -12,11 +12,8 @@ wsInit = (userId, routes) => {
 
 
   ws.onmessage = (e) => {
-    // =============
-    // since these are mostly for testing, let's get rid of these before monday
-    // =============
     let message = JSON.parse(e.data);
-    // =============
+
     let route = message.route;
 
     let moveFrom = 'mines';
@@ -26,10 +23,6 @@ wsInit = (userId, routes) => {
       routes[route][moveFrom](message);
     } else {
       console.log('Invalid route. You sent this to: ', route, moveFrom, '.');
-      // console.log('invalid route. Did you mean one of these? ');
-      // for (let route in socketRoutes) {
-      //   console.log('\t' + route);
-      // }
     }
   };
 
