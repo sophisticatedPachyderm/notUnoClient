@@ -8,6 +8,8 @@ import {
 
 const Card = require('./card');
 const PopUp = require('./popup');
+const OppView = require('./opponentView');
+
 const wsInit = require('../../socket/socketUtil');
 
 // get style sheet from external
@@ -135,11 +137,13 @@ class game extends Component {
           this.setState({mustChooseAction: false});
         }} />
     }
-
     return (
       <View style={styles.container}>
         <View style={{flex:0.25}} />
         <View style={[styles.main, {backgroundColor: this.state.color}]}>
+          <OppView player={this.props.players.topPlayer} loc={'top'}/>
+          <OppView player={this.props.players.leftPlayer} loc={'left'}/>
+          <OppView player={this.props.players.rightPlayer} loc={'right'}/>
           <Text style={[styles.label, {color: '#fff'}]}>
             {this.state.value}
           </Text>

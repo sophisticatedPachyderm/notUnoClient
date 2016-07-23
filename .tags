@@ -82,3 +82,36 @@ create	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/compon
 login	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  login() {$/;"	function	line:79
 parentSetState	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  parentSetState(key, value) {$/;"	function	line:109
 render	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/login.js	/^  render() {$/;"	function	line:116
+define	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function define(moduleId, factory) {$/;"	function	line:20
+modules.hasError	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^    factory,$/;"	property	line:27
+modules.isInitialized	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^    hasError: false,$/;"	property	line:28
+modules.exports	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^    isInitialized: false,$/;"	property	line:29
+define	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function define(moduleId, factory) {$/;"	function	line:20
+require	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function require(moduleId) {$/;"	function	line:43
+require	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function require(moduleId) {$/;"	function	line:43
+guardedLoadModule	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function guardedLoadModule(moduleId, module) {$/;"	function	line:53
+guardedLoadModule	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function guardedLoadModule(moduleId, module) {$/;"	function	line:53
+loadModuleImplementation	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function loadModuleImplementation(moduleId, module) {$/;"	function	line:69
+loadModuleImplementation	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function loadModuleImplementation(moduleId, module) {$/;"	function	line:69
+unknownModuleError	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function unknownModuleError(id) {$/;"	function	line:141
+unknownModuleError	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function unknownModuleError(id) {$/;"	function	line:141
+moduleThrewError	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function moduleThrewError(id) {$/;"	function	line:150
+moduleThrewError	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^function moduleThrewError(id) {$/;"	function	line:150
+require.Systrace.beginEvent	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^  require.Systrace = { beginEvent: () => {}, endEvent: () => {} };$/;"	property	line:155
+createHotReloadingObject	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^  var createHotReloadingObject = function() {$/;"	function	line:158
+const.acceptCallback	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^    const hot = {$/;"	property	line:159
+const.accept	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^      acceptCallback: null,$/;"	property	line:160
+createHotReloadingObject	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^  var createHotReloadingObject = function() {$/;"	function	line:158
+const	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/node_modules/react-native/packager/react-packager/src/Resolver/polyfills/require.js	/^  };$/;"	function	line:164
+render	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/opponentView.js	/^  render() {$/;"	function	line:52
+const.b	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^const colorConverter = {$/;"	property	line:18
+const.g	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  b: '#2196F3',$/;"	property	line:19
+const.r	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  g: '#4CAF50',$/;"	property	line:20
+const.y	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  r: '#F44336',$/;"	property	line:21
+constructor	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  constructor(props) {$/;"	function	line:26
+this.state.currentCard	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^    this.state = {$/;"	property	line:28
+getPlayerFromId	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  getPlayerFromId(userId) {$/;"	function	line:52
+opponentDrawCard	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  opponentDrawCard(response) {$/;"	function	line:62
+opponentPlayCard	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  opponentPlayCard(response) {$/;"	function	line:69
+_changeCard	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  _changeCard(newColor, newValue) {$/;"	function	line:93
+render	/Users/evanmoncuso/Documents/coding/hr/greenfield/notUnoClient/App/components/game.js	/^  render() {$/;"	function	line:100
