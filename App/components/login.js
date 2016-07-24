@@ -17,6 +17,34 @@ const Button = require('./button');
 const styles = require('./styles/styles').login;
 const alertStyles = require('./styles/styles').create;
 
+const allGamesFetch = (that) => {
+  return fetch('https://notuno.herokuapp.com/api/game/allgames', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      userId: that.state.appUserId
+    })
+  })
+  // another fetch request...
+  .then((response) => response.json())
+  .then((parsedResponse) => {
+    let output = [];
+    for (let key in parsedResponse) {
+      output.push({
+        gameId: key,
+        players: parsedResponse[key].usernameList,
+      });
+    }
+    that.setState({appUserGames: output});
+  })
+  .then(() => {
+    that.accessGames(that.state);
+  });
+};
+
 class login extends Component {
   constructor(props) {
     super(props);
@@ -67,31 +95,7 @@ class login extends Component {
           password: '',
         })
         // send a request to the server to get that user's games by Id
-        fetch('https://notuno.herokuapp.com/api/game/allgames', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            userId: this.state.appUserId
-          })
-        })
-        // another fetch request...
-        .then((response) => response.json())
-        .then((parsedResponse) => {
-          let output = [];
-          for (let key in parsedResponse) {
-            output.push({
-              gameId: key,
-              players: parsedResponse[key].usernameList,
-            })
-          }
-          this.setState({appUserGames: output});
-        })
-        .then(() => {
-          this.accessGames(this.state);
-        });
+        allGamesFetch(this);
       }
     })
     .catch((err) => {
@@ -111,6 +115,7 @@ class login extends Component {
       })
     })
     .then((response) => {
+      allGamesFetch(this);
     })
     .catch((err) => {
       console.log(err);
